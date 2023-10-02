@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-E_Store-925ba00b-f8d6-4455-84a5-f1fda08e5213</UserSecretsId>
     <RootNamespace>E_Store</RootNamespace>
