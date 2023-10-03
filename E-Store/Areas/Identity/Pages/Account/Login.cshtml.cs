@@ -70,9 +70,7 @@ namespace E_Store.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             if (!ModelState.IsValid)
-            {
                 return Page();
-            }
 
             string username = Input.UserName;
 

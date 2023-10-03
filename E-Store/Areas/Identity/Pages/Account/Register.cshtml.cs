@@ -1,6 +1,7 @@
 ﻿#nullable disable
 
 using E_Store.Data;
+using E_Store.Models.Enums;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -102,6 +103,7 @@ namespace E_Store.Areas.Identity.Pages.Account
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, nameof(UserRoles.User));
                 _logger.LogInformation("User created a new account with password.");
 
                 var userId = await _userManager.GetUserIdAsync(user);
