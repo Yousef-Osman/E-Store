@@ -2,7 +2,7 @@
 
 namespace E_Store.Models.Entities;
 
-public class Category
+public class Category: BaseEntity
 {
     public int Id { get; set; }
 

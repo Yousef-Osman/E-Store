@@ -2,7 +2,7 @@
 
 namespace E_Store.Models.Entities;
 
-public class Brand
+public class Brand: BaseEntity
 {
     public int Id { get; set; }
 

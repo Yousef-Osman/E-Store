@@ -1,17 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Drawing.Drawing2D;
 
 namespace E_Store.Models.Entities;
 
-public class Product
+public class Product: BaseEntity
 {
     public Product()
     {
         Id = Guid.NewGuid().ToString();
     }
 
-    [Key]
-    [StringLength(50)]
+    [Key, StringLength(50)]
     public string Id { get; set; }
 
     [Required, StringLength(100)]
@@ -24,6 +22,7 @@ public class Product
 
     public int Stock { get; set; }
 
+    [StringLength(1000)]
     public string ImageUrl { get; set; }
 
     public int BrandId { get; set; }
