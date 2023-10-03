@@ -90,7 +90,11 @@ namespace E_Store.Areas.Identity.Pages.Account
             if (!ModelState.IsValid)
                 return Page();
 
-            var user = CreateUser();
+            var user = new ApplicationUser
+            {
+                FirstName = Input.FirstName,
+                LastName = Input.LastName,
+            };
 
             await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
             await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

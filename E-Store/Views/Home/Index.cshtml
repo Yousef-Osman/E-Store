@@ -6,3 +6,18 @@
     <h1 class="display-4">Home Page</h1>
     <p class="lead text-dimgrey"><strong>This Is an E-Commerce App, that was built using ASP.NET Core MVC.</strong></p>
 </div>
+
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    @for (int i = 0; i < 10; i++)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img src="~/images/products/71bphkmt0dl._ac_sx466_.jpg" class="card-img-top p-3" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
