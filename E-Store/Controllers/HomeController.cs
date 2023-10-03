@@ -1,22 +1,36 @@
-﻿using E_Store.Models;
+﻿using E_Store.Data;
+using E_Store.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace E_Store.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly ApplicationDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var products = await _context.Products.Take(12).ToListAsync();
+        return View(products);
     }
 
+    public IActionResult Details(string id)
+    {
+        if (string.IsNullOrWhiteSpace(id))
+            return BadRequest();
+
+        var product = _context.Products.Find(id);
+        return View(product);
+    }
+    
     public IActionResult Privacy()
     {
         return View();
