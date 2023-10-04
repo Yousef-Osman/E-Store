@@ -4,6 +4,9 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
+    <li>
+        <a class="nav-link text-dark" asp-controller="ShoppingCart" asp-action="Index"><i class="fa-solid fa-cart-shopping"></i><span class="badge">3</span></a>
+    </li>
     @if (SignInManager.IsSignedIn(User))
     {
         @*var fullName = $"{UserManager.GetUserAsync(User).Result.FirstName} {UserManager.GetUserAsync(User).Result.LastName}";*@
