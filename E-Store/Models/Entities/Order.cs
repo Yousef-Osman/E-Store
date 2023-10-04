@@ -1,0 +1,51 @@
+﻿using E_Store.Data;
+using System.ComponentModel.DataAnnotations;
+
+namespace E_Store.Models.Entities;
+
+public class Order : BaseEntity
+{
+    public Order()
+    {
+        Id = Guid.NewGuid().ToString();
+    }
+
+    [Key, StringLength(50)]
+    public string Id { get; set; }
+
+    [Required]
+    public string UserId { get; set; }
+
+    [Required, StringLength(50)]
+    public string FirstName { get; set; }
+
+    [Required, StringLength(50)]
+    public string LastName { get; set; }
+
+    [Required, StringLength(30)]
+    public string PhoneNumber { get; set; }
+
+    [Required, StringLength(255)]
+    public string Address { get; set; }
+
+    [Required, StringLength(50)]
+    public string City { get; set; }
+
+    [StringLength(50)]
+    public string State { get; set; }
+
+    [Required, StringLength(50)]
+    public string Country { get; set; }
+
+    [StringLength(20)]
+    public string ZipCode { get; set; }
+
+    [Required, EmailAddress, StringLength(255)]
+    public string Email { get; set; }
+
+    [Required]
+    public decimal TotalPrice { get; set; }
+
+    public ApplicationUser User { get; set; }
+    List<OrderDetail> OrderDetails { get; set; }
+}

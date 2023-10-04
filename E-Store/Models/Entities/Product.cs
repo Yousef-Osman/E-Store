@@ -18,7 +18,7 @@ public class Product: BaseEntity
     [Required, StringLength(400)]
     public string Description { get; set; }
 
-    public double Price { get; set; }
+    public decimal Price { get; set; }
 
     public int Stock { get; set; }
 
