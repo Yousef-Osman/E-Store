@@ -79,6 +79,17 @@ public class ShoppingCart
         await _context.SaveChangesAsync();
     }
 
+    public async Task ClearShoppingCartAsync()
+    {
+        var items = await _context.CartItems.Where(a => a.ShoppingCartId == ShoppingCartId).ToListAsync();
+
+        if (items.Any())
+        {
+            _context.RemoveRange(items);
+            await _context.SaveChangesAsync();
+        }
+    }
+
     public async Task<List<CartItem>> GetCartItems()
     {
         Items ??= (await _context.CartItems.Where(a => a.ShoppingCartId == ShoppingCartId).Include(a => a.Product).ToListAsync());
@@ -104,22 +115,12 @@ public class ShoppingCart
 
     public async Task<decimal> GetCartTotalPriceAsync()
     {
-        return await _context.CartItems.Select(a => a.Quantity * a.Price).SumAsync();
+        return await _context.CartItems.Where(a => a.ShoppingCartId == ShoppingCartId)
+            .Select(a => a.Quantity * a.Price).SumAsync();
     }
 
     public async Task<decimal> GetCartItemsCountAsync()
     {
         return await _context.CartItems.Where(a => a.ShoppingCartId == ShoppingCartId).CountAsync();
-    }
-
-    public async Task ClearShoppingCartAsync()
-    {
-        var items = await _context.CartItems.Where(a => a.ShoppingCartId == ShoppingCartId).ToListAsync();
-
-        if (items.Any())
-        {
-            _context.RemoveRange(items);
-            await _context.SaveChangesAsync();
-        }
     }
 }

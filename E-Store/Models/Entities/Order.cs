@@ -22,11 +22,17 @@ public class Order : BaseEntity
     [Required, StringLength(50)]
     public string LastName { get; set; }
 
+    [EmailAddress, StringLength(255)]
+    public string Email { get; set; }
+
     [Required, StringLength(30)]
     public string PhoneNumber { get; set; }
 
     [Required, StringLength(255)]
-    public string Address { get; set; }
+    public string AddressLine1 { get; set; }
+
+    [StringLength(255)]
+    public string AddressLine2 { get; set; }
 
     [Required, StringLength(50)]
     public string City { get; set; }
@@ -40,12 +46,9 @@ public class Order : BaseEntity
     [StringLength(20)]
     public string ZipCode { get; set; }
 
-    [Required, EmailAddress, StringLength(255)]
-    public string Email { get; set; }
-
     [Required]
     public decimal TotalPrice { get; set; }
 
     public ApplicationUser User { get; set; }
-    List<OrderDetail> OrderDetails { get; set; }
+    public List<OrderDetail> OrderDetails { get; set; }
 }
