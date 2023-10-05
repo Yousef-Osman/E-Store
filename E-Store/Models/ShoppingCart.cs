@@ -1,5 +1,6 @@
 ﻿using E_Store.Data;
 using E_Store.Models.Entities;
+using E_Store.ViewModels;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
@@ -67,15 +68,48 @@ public class ShoppingCart
         await _context.SaveChangesAsync();
     }
 
+    public async Task DeleteCartItemAsync(string productId)
+    {
+        var item = await _context.CartItems.FirstOrDefaultAsync(a => a.ShoppingCartId == ShoppingCartId && a.ProductId == productId);
+
+        if (item == null)
+            return;
+
+        _context.Remove(item);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<List<CartItem>> GetCartItems()
     {
         Items ??= (await _context.CartItems.Where(a => a.ShoppingCartId == ShoppingCartId).Include(a => a.Product).ToListAsync());
         return Items;
     }
 
-    public async Task<decimal> GetCartTotalAsync()
+    public async Task<List<CartItemVM>> GetCartItemsVM()
+    {
+        var items = await _context.CartItems
+            .Where(a => a.ShoppingCartId == ShoppingCartId)
+            .Select(a => new CartItemVM
+            {
+                Id = a.Id,
+                ProductId = a.ProductId,
+                ProductName = a.Product.Name,
+                Price = a.Price,
+                imageUrl = a.Product.ImageUrl,
+                Quantity = a.Quantity
+            }).ToListAsync();
+
+        return items;
+    }
+
+    public async Task<decimal> GetCartTotalPriceAsync()
     {
         return await _context.CartItems.Select(a => a.Quantity * a.Price).SumAsync();
+    }
+
+    public async Task<decimal> GetCartItemsCountAsync()
+    {
+        return await _context.CartItems.Where(a => a.ShoppingCartId == ShoppingCartId).CountAsync();
     }
 
     public async Task ClearShoppingCartAsync()
