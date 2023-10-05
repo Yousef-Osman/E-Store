@@ -5,7 +5,11 @@
 
 <ul class="navbar-nav">
     <li>
-        <a class="nav-link text-dark" asp-controller="ShoppingCart" asp-action="Index"><i class="fa-solid fa-cart-shopping"></i><span class="badge">3</span></a>
+        <a class="nav-link text-dark" asp-controller="ShoppingCart" asp-action="Index">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  id="cart-item-count" hidden>0</span>
+        </a>
     </li>
     @if (SignInManager.IsSignedIn(User))
     {
@@ -29,3 +33,5 @@
         </li>
     }
 </ul>
+
+
