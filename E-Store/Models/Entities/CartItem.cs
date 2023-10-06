@@ -7,6 +7,8 @@ public class CartItem
     public CartItem()
     {
         Id = Guid.NewGuid().ToString();
+        Created = DateTime.Now;
+        LastModified = DateTime.Now;
     }
 
     [Key, StringLength(50)]
@@ -21,6 +23,10 @@ public class CartItem
     public decimal Price { get; set; }
 
     public int Quantity { get; set; }
+
+    public DateTime Created { get; set; }
+
+    public DateTime? LastModified { get; set; }
 
     public Product Product { get; set; }
 }

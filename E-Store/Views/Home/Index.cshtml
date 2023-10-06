@@ -52,7 +52,7 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">@product.Name</h5>
                         <p class="card-text">@product.Description</p>
-                        <h6 class="mb-3 text-secondary">Price: <span class="text-success h4">@product.Price</span> EGP</h6>
+                        <h6 class="mb-3 text-secondary">Price: <span class="text-success h4">@product.Price.ToString("n")</span> EGP</h6>
                         <div class="mt-auto">
                             <a asp-action="details" asp-route-id="@product.Id" class="btn btn-outline-success px-4">Details</a>
                             <a asp-controller="ShoppingCart" asp-action="AddItemToCart" asp-route-id="@product.Id"

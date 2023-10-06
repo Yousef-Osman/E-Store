@@ -48,6 +48,7 @@ public class ShoppingCart
         else
         {
             item.Quantity++;
+            item.LastModified = DateTime.Now;
         }
 
         await _context.SaveChangesAsync();
@@ -61,9 +62,14 @@ public class ShoppingCart
             return;
 
         if (item.Quantity > 1)
+        {
             item.Quantity--;
+            item.LastModified = DateTime.Now;
+        }
         else
+        {
             _context.Remove(item);
+        }
 
         await _context.SaveChangesAsync();
     }

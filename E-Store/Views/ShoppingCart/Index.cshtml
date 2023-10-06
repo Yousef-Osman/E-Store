@@ -8,97 +8,87 @@
     .table {
         color: #54595e;
     }
-
-    .text-dim {
-        color: #54595e;
-    }
 </style>
 
-<div class="px-4 px-lg-0 mt-5">
-    <div class="pb-5">
-        <div class="container">
-            <div class="p-5 bg-white rounded shadow mb-5">
-                <h5 class="p-2 px-3 text-uppercase text-dim"><strong>Shopping Cart</strong></h5>
-                <div class="row">
-                    <div class="col-lg-9 d-flex flex-column">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="border-0 bg-light">
-                                            <div class="p-2 px-3 text-uppercase">Product</div>
-                                        </th>
-                                        <th scope="col" class="border-0 bg-light">
-                                            <div class="p-2 px-3 text-uppercase">Name</div>
-                                        </th>
-                                        <th scope="col" class="border-0 bg-light">
-                                            <div class="py-2 text-uppercase">Price</div>
-                                        </th>
-                                        <th scope="col" class="border-0 bg-light">
-                                            <div class="py-2 text-uppercase">Quantity</div>
-                                        </th>
-                                        <th scope="col" class="border-0 bg-light">
-                                            <div class="py-2 text-uppercase">Sub Total</div>
-                                        </th>
-                                        <th scope="col" class="border-0 bg-light">
-                                            <div class="py-2 text-uppercase">Remove</div>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.Items)
-                                    {
-                                        <tr>
-                                            <th scope="row" class="border-0">
-                                                <div class="p-2">
-                                                    <img src="~/@item.imageUrl" alt="" width="70" class="img-fluid rounded shadow-sm">
-                                                </div>
-                                            </th>
-                                            <td class="border-0 align-middle"><strong>@item.ProductName</strong></td>
-                                            <td class="border-0 align-middle"><strong>@item.Price.ToString("n") EGP</strong></td>
-                                            <td class="border-0 align-middle">
-                                                <div class="d-flex align-items-center">
-                                                    <a asp-action="RemoveItemFromCart" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path">
-                                                        <i class="fa-solid fa-circle-minus text-danger"></i>
-                                                    </a>
-                                                    <strong class="mx-2">@item.Quantity</strong>
-                                                    <a asp-action="AddItemToCart" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path">
-                                                        <i class="fa-solid fa-circle-plus text-primary"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="border-0 align-middle"><strong>@((item.Price * item.Quantity).ToString("n")) EGP</strong></td>
-                                            <td class="border-0 align-middle">
-                                                <a asp-action="DeleteCartItem" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path" class="text-dark">
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary py-2 mt-auto me-auto">Continue Shopping</a>
-                    </div>
-                    <div class="col-lg-3 d-flex flex-column">
-                        <div class="bg-light px-4 py-3 text-uppercase text-dim"><strong>Order summary</strong> </div>
-                        <div class="p-4">
-                            <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
-                            <ul class="list-unstyled mb-4">
-                                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>@Model.TotalPrice.ToString("n") EGP</strong></li>
-                                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>0.00 EGP</strong></li>
-                                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>0.00 EGP</strong></li>
-                                <li class="d-flex justify-content-between py-3 border-bottom">
-                                    <strong class="text-muted">Total</strong>
-                                    <h5 class="font-weight-bold">@Model.TotalPrice.ToString("n") EGP</h5>
-                                </li>
-                            </ul>
-                        </div>
-                        <a asp-controller="Orders" asp-action="Checkout" class="btn btn-dark py-2 mt-auto mx-4">Procceed to checkout</a>
-                    </div>
-
-                </div>
+<div class="card p-5 my-5 shadow">
+    <h4 class="mb-4 text-uppercase text-dim"><strong>Shopping Cart</strong></h4>
+    <div class="row">
+        <div class="col-lg-9 d-flex flex-column">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="border-0 bg-light">
+                                <div class="p-2 text-uppercase">@Html.DisplayNameFor(model => model.Items[0].imageUrl)</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 text-uppercase">@Html.DisplayNameFor(model => model.Items[0].ProductName)</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 text-uppercase">@Html.DisplayNameFor(model => model.Items[0].Price)</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 text-uppercase">@Html.DisplayNameFor(model => model.Items[0].Quantity)</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 text-uppercase">Sub Total</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 text-uppercase text-center">Remove</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <th scope="row" class="border-0">
+                                    <div class="p-2">
+                                        <img src="~/@item.imageUrl" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                    </div>
+                                </th>
+                                <td class="border-0 align-middle"><strong>@item.ProductName</strong></td>
+                                <td class="border-0 align-middle"><strong>@item.Price.ToString("n") EGP</strong></td>
+                                <td class="border-0 align-middle">
+                                    <div class="d-flex align-items-center">
+                                        <a asp-action="RemoveItemFromCart" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path">
+                                            <i class="fa-solid fa-circle-minus text-danger"></i>
+                                        </a>
+                                        <strong class="mx-2">@item.Quantity</strong>
+                                        <a asp-action="AddItemToCart" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path">
+                                            <i class="fa-solid fa-circle-plus text-primary"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td class="border-0 align-middle"><strong>@((item.Price * item.Quantity).ToString("n")) EGP</strong></td>
+                                <td class="border-0 align-middle text-center">
+                                    <a asp-action="DeleteCartItem" asp-route-id="@item.ProductId" asp-route-returnUrl="@Context.Request.Path" class="text-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary py-2 mt-auto me-auto">Continue Shopping</a>
         </div>
+        <div class="col-lg-3 d-flex flex-column">
+            <div class="bg-light px-4 py-3 text-uppercase text-dim"><strong>Order summary</strong> </div>
+            <div class="p-4">
+                <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
+                <ul class="list-unstyled mb-4">
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>@Model.TotalPrice.ToString("n") EGP</strong></li>
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>0.00 EGP</strong></li>
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>0.00 EGP</strong></li>
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                        <strong class="text-muted">Total</strong>
+                        <h5 class="font-weight-bold">@Model.TotalPrice.ToString("n") EGP</h5>
+                    </li>
+                </ul>
+            </div>
+            <a asp-controller="Orders" asp-action="AddOrder" class="btn btn-dark py-2 mt-auto mx-4">Place Order</a>
+        </div>
+
     </div>
 </div>
