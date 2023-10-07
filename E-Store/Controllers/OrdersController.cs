@@ -1,8 +1,11 @@
 ﻿using E_Store.Models;
+using E_Store.Models.Enums;
 using E_Store.Repositories.interfaces;
 using E_Store.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Stripe.Checkout;
 using System.Security.Claims;
 
 namespace E_Store.Controllers;
@@ -25,7 +28,7 @@ public class OrdersController : Controller
         return View();
     }
 
-    public async Task<IActionResult> AddOrder()
+    public async Task<IActionResult> Checkout()
     {
         var model = await FillOrderViewModel(new OrderVM());
 
@@ -37,7 +40,7 @@ public class OrdersController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> AddOrder(OrderVM model)
+    public async Task<IActionResult> Checkout(OrderVM model)
     {
         model = await FillOrderViewModel(model);
 
@@ -45,13 +48,81 @@ public class OrdersController : Controller
             return View(model);
 
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        var result = await _orderRepo.AddOrderAsync(model, userId);
+        var orderId = await _orderRepo.AddOrderAsync(model, userId);
 
-        if (!result)
+        if (orderId == null)
             return StatusCode(StatusCodes.Status500InternalServerError);
 
         await _shoppingCart.ClearShoppingCartAsync();
-        return RedirectToAction(nameof(Checkout));
+        return RedirectToAction(nameof(Payment), new { id = orderId });
+    }
+
+    public async Task<IActionResult> Payment(string id)
+    {
+        var order = await _orderRepo.GetOrderWithDetailsAsync(id);
+
+        if (!order.OrderDetails.Any())
+            return BadRequest();
+
+        var lineItems = new List<SessionLineItemOptions>();
+        foreach (var item in order.OrderDetails)
+        {
+            var line = new SessionLineItemOptions
+            {
+                PriceData = new SessionLineItemPriceDataOptions
+                {
+                    Currency = "egp",
+                    UnitAmount = (long)item.Price * 100,
+                    ProductData = new SessionLineItemPriceDataProductDataOptions
+                    {
+                        Name = item.ProductName,
+                    },
+                },
+                Quantity = item.Quantity,
+            };
+
+            lineItems.Add(line);
+        }
+
+        var domain = $"{Request.Scheme}://{Request.Host}";
+        var options = new SessionCreateOptions
+        {
+            LineItems = lineItems,
+            Mode = "payment",
+            SuccessUrl = domain + $"/Orders/Success?id={id}",
+            CancelUrl = domain + "/Orders/Checkout",
+        };
+
+        var service = new SessionService();
+        Session session = service.Create(options);
+
+        order.SessionId = session.Id;
+        order.PaymentIntentId = session.PaymentIntentId;
+        var success = await _orderRepo.UpdateStripDataAsync(order);
+
+        if (!success)
+            return StatusCode(StatusCodes.Status500InternalServerError);
+
+        Response.Headers.Add("Location", session.Url);
+        return new StatusCodeResult(303);
+    }
+
+    public async Task<IActionResult> Success(string id)
+    {
+        var order = await _orderRepo.GetOrderAsync(id);
+
+        if (order == null)
+            return BadRequest();
+
+        var service = new SessionService();
+        Session session = await service.GetAsync(order.SessionId);
+
+        if (session.PaymentStatus.ToLower() == OrderStatus.Paid.ToString().ToLower())
+        {
+            await _orderRepo.UpdateOrderStatusAsync(id, OrderStatus.Paid);
+        }
+
+        return View();
     }
 
     private async Task<OrderVM> FillOrderViewModel(OrderVM model)
@@ -60,10 +131,5 @@ public class OrdersController : Controller
         model.TotalPrice = model.CartItems.Any() ? await _shoppingCart.GetCartTotalPriceAsync() : 0;
 
         return model;
-    }
-
-    public IActionResult Checkout()
-    {
-        return View();
     }
 }
