@@ -1,7 +1,9 @@
 ﻿using E_Store.Data;
 using E_Store.Models.Entities;
+using E_Store.Models.Enums;
 using E_Store.Repositories.interfaces;
 using E_Store.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_Store.Repositories;
 
@@ -14,23 +16,30 @@ public class OrderRepository : IOrderRepository
         _context = context;
     }
 
-    public async Task<bool> AddOrderAsync(OrderVM orderVM, string userId)
+    public async Task<Order> GetOrderAsync(string id)
     {
-        var orderDetails = new List<OrderDetail>();
+        return await _context.Orders.Where(a => a.Id == id).FirstOrDefaultAsync();
+    }
 
-        foreach (var item in orderVM.CartItems)
-        {
-            var orderDetail = new OrderDetail()
-            {
-                ProductId = item.ProductId,
-                Price = item.Price,
-                Quantity = item.Quantity,
-            };
+    public async Task<Order> GetOrderWithDetailsAsync(string id)
+    {
+        return await _context.Orders.Where(a => a.Id == id)
+            .Include(a=>a.OrderDetails).FirstOrDefaultAsync();
+    }
 
-            orderDetails.Add(orderDetail);
-        }
+    public async Task<List<OrderDetail>> GetOrderDetailsAsync(string id)
+    {
+        return await _context.OrdersDetails.Where(a => a.OrderId == id).ToListAsync();
+    }
 
+    public async Task<List<Order>> GetOrdersWithDetailsAsync(string UserId)
+    {
+        return await _context.Orders.Where(a => a.UserId == UserId)
+            .Include(a => a.OrderDetails).ToListAsync();
+    }
 
+    public async Task<string> AddOrderAsync(OrderVM orderVM, string userId)
+    {
         var order = new Order
         {
             UserId = userId,
@@ -45,20 +54,47 @@ public class OrderRepository : IOrderRepository
             State = orderVM.State,
             ZipCode = orderVM.ZipCode,
             TotalPrice = orderVM.TotalPrice,
-            OrderDetails = orderDetails
+            Status = OrderStatus.Pending.ToString(),
+            OrderDetails = new List<OrderDetail>()
         };
 
+        foreach (var item in orderVM.CartItems)
+        {
+            order.OrderDetails.Add(new OrderDetail()
+            {
+                ProductId = item.ProductId,
+                ProductName = item.ProductName,
+                Price = item.Price,
+                Quantity = item.Quantity,
+            });
+        }
+
         _context.Add(order);
-        return await _context.SaveChangesAsync() > 0;
+        await _context.SaveChangesAsync();
+        return order.Id;
     }
 
-    public Task<Order> GetOrderAsync(string id)
+    public async Task<bool> UpdateStripDataAsync(Order order)
     {
-        throw new NotImplementedException();
-    }
+        var result = await _context.Orders.Where(a => a.Id == order.Id)
+            .ExecuteUpdateAsync(setters => setters
+                .SetProperty(b => b.SessionId, order.SessionId)
+                .SetProperty(b => b.PaymentIntentId, order.PaymentIntentId)
+                .SetProperty(b => b.LastModified, DateTime.Now));
 
-    public Task<List<Order>> GetOrdersAsync()
+        var result2 = await _context.SaveChangesAsync();
+
+        return result > 0;
+    }
+    
+    public async Task<bool> UpdateOrderStatusAsync(string id, OrderStatus status)
     {
-        throw new NotImplementedException();
+        var result = await _context.Orders.Where(a => a.Id == id)
+            .ExecuteUpdateAsync(setters => setters
+                .SetProperty(b => b.PaymentDate, DateTime.Now)
+                .SetProperty(b => b.Status, status.ToString())
+                .SetProperty(b => b.LastModified, DateTime.Now));
+
+        return result > 0;
     }
 }
