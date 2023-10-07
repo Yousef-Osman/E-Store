@@ -18,6 +18,9 @@ public class OrderDetail: BaseEntity
     [Required]
     public string ProductId { get; set; }
 
+    [Required, StringLength(100)]
+    public string ProductName { get; set; }
+
     [Required]
     public decimal Price { get; set; }
 

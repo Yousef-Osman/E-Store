@@ -49,6 +49,17 @@ public class Order : BaseEntity
     [Required]
     public decimal TotalPrice { get; set; }
 
+    [StringLength(50)]
+    public string Status { get; set; }
+
+    public DateTime? PaymentDate { get; set; }
+
+    [StringLength(255)]
+    public string SessionId { get; set; }
+
+    [StringLength(255)]
+    public string PaymentIntentId { get; set; }
+
     public ApplicationUser User { get; set; }
     public List<OrderDetail> OrderDetails { get; set; }
 }
