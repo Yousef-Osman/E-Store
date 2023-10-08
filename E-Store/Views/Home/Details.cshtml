@@ -18,13 +18,15 @@
                     <hr class="my-2">
                     <h6 class="mt-3 mb-4 text-secondary">Price: <span class="text-success h4">@Model.Price.ToString("n")</span> EGP</h6>
                     <div class="d-flex">
-                        <form class="col-auto row me-1" method="post">
+                        <a asp-controller="ShoppingCart" asp-action="AddItemToCart" asp-route-id="@Model.Id"
+                           asp-route-returnUrl="@Context.Request.Path" class="btn btn-warning" style="color: #444;">Add to cart <i class="fa-solid fa-cart-shopping"></i></a>
+                        @*<form class="col-auto row me-1" method="post">
                             <div class="col-auto pe-0 me-1"><input type="number" class="form-control" id="cart_quantity" name="cart_quantity" value="1" min="1" max="10"></div>
                             <button name="add_to_cart" type="submit" class="btn btn-warning col-auto">Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
-                        </form>
-                        <form class="col-auto" method="post">
+                        </form>*@
+                       @* <form class="col-auto" method="post">
                             <button name="add_to_cart" type="submit" class="btn btn-primary col">Add to Wishlist</button>
-                        </form>
+                        </form>*@
                     </div>
                     <hr class="my-4">
                     <h5 class="mb-1">About this product</h5>
