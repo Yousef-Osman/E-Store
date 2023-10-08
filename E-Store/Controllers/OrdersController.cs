@@ -23,9 +23,11 @@ public class OrdersController : Controller
         _orderRepo = orderRepo;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var orders = await _orderRepo.GetOrdersWithDetailsAsync(userId);
+        return View(orders);
     }
 
     public async Task<IActionResult> Checkout()
@@ -44,7 +46,7 @@ public class OrdersController : Controller
     {
         model = await FillOrderViewModel(model);
 
-        if (!ModelState.IsValid)
+        if (!ModelState.IsValid || !(model.TotalPrice > 0))
             return View(model);
 
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -61,7 +63,7 @@ public class OrdersController : Controller
     {
         var order = await _orderRepo.GetOrderWithDetailsAsync(id);
 
-        if (!order.OrderDetails.Any())
+        if (!order.OrderDetails.Any() || order.Status != OrderStatus.Pending.ToString())
             return BadRequest();
 
         var lineItems = new List<SessionLineItemOptions>();
@@ -90,7 +92,7 @@ public class OrdersController : Controller
             LineItems = lineItems,
             Mode = "payment",
             SuccessUrl = domain + $"/Orders/Success?id={id}",
-            CancelUrl = domain + "/Orders/Checkout",
+            CancelUrl = domain + "/Orders/Index",
         };
 
         var service = new SessionService();
@@ -123,6 +125,16 @@ public class OrdersController : Controller
         }
 
         return View();
+    }
+
+    public async Task<IActionResult> DeleteOrder(string id)
+    {
+        var result = await _orderRepo.DeleteOrderAsync(id);
+
+        if (!result)
+            return BadRequest();
+
+        return RedirectToAction(nameof(Index));
     }
 
     private async Task<OrderVM> FillOrderViewModel(OrderVM model)

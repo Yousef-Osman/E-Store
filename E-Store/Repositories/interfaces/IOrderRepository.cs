@@ -13,4 +13,5 @@ public interface IOrderRepository
     public Task<string> AddOrderAsync(OrderVM orderVM, string userId);
     public Task<bool> UpdateStripDataAsync(Order order);
     public Task<bool> UpdateOrderStatusAsync(string id, OrderStatus status);
+    public Task<bool> DeleteOrderAsync(string id);
 }

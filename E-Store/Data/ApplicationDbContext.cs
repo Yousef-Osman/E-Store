@@ -26,5 +26,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         builder.Entity<Product>().HasQueryFilter(a => a.IsDeleted == false);
         builder.Entity<Brand>().HasQueryFilter(a => a.IsDeleted == false);
         builder.Entity<Category>().HasQueryFilter(a => a.IsDeleted == false);
+        builder.Entity<Order>().HasQueryFilter(a => a.IsDeleted == false);
+        builder.Entity<OrderDetail>().HasQueryFilter(a => a.IsDeleted == false);
     }
 }

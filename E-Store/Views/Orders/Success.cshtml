@@ -4,8 +4,12 @@
 
 <div class="container">
     <div class="py-5 text-center">
-
-        <h2>Order Completed Successfully</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <i class="fa-solid fa-circle-check text-success mb-4" style="font-size:7rem;"></i>
+        <h2 class="text-success">Order Completed Successfully</h2>
+        <p class="lead">Your Payment was received and the shipping process will start as soon as possible.</p>
+        <div class="mt-3">
+            <a asp-controller="Orders" asp-action="Index" class="btn btn-outline-secondary py-2" style="width:163px;">View Orders</a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary py-2" style="width:163px;">Continue Shopping</a>
+        </div>
     </div>
 </div>

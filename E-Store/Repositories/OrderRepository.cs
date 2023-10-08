@@ -24,7 +24,7 @@ public class OrderRepository : IOrderRepository
     public async Task<Order> GetOrderWithDetailsAsync(string id)
     {
         return await _context.Orders.Where(a => a.Id == id)
-            .Include(a=>a.OrderDetails).FirstOrDefaultAsync();
+            .Include(a => a.OrderDetails).FirstOrDefaultAsync();
     }
 
     public async Task<List<OrderDetail>> GetOrderDetailsAsync(string id)
@@ -35,7 +35,7 @@ public class OrderRepository : IOrderRepository
     public async Task<List<Order>> GetOrdersWithDetailsAsync(string UserId)
     {
         return await _context.Orders.Where(a => a.UserId == UserId)
-            .Include(a => a.OrderDetails).ToListAsync();
+            .Include(a => a.OrderDetails).OrderByDescending(a => a.Created).ToListAsync();
     }
 
     public async Task<string> AddOrderAsync(OrderVM orderVM, string userId)
@@ -86,7 +86,7 @@ public class OrderRepository : IOrderRepository
 
         return result > 0;
     }
-    
+
     public async Task<bool> UpdateOrderStatusAsync(string id, OrderStatus status)
     {
         var result = await _context.Orders.Where(a => a.Id == id)
@@ -94,6 +94,16 @@ public class OrderRepository : IOrderRepository
                 .SetProperty(b => b.PaymentDate, DateTime.Now)
                 .SetProperty(b => b.Status, status.ToString())
                 .SetProperty(b => b.LastModified, DateTime.Now));
+
+        return result > 0;
+    }
+
+    public async Task<bool> DeleteOrderAsync(string id)
+    {
+        var result = await _context.Orders.Where(a => a.Id == id)
+            .ExecuteUpdateAsync(setters => setters
+                .SetProperty(b => b.IsDeleted, true)
+                .SetProperty(b => b.Deleted, DateTime.Now));
 
         return result > 0;
     }
