@@ -127,12 +127,17 @@ public class OrdersController : Controller
         return View();
     }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteOrder(string id)
     {
+        if (string.IsNullOrWhiteSpace(id))
+            return BadRequest();
+
         var result = await _orderRepo.DeleteOrderAsync(id);
 
         if (!result)
-            return BadRequest();
+            return NotFound();
 
         return RedirectToAction(nameof(Index));
     }

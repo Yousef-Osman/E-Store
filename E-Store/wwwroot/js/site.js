@@ -2,7 +2,6 @@
 let cartItemsCount = document.getElementById('cart-item-count');
 
 document.addEventListener("DOMContentLoaded", function (event) {
-    console.log('working..');
     fetch('/ShoppingCart/GetCartItemsCount', {
         headers: { 'Content-Type': 'application/json' },
         method: 'Get',
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         return response.json();
     }).then(data => {
-        console.log(data);
         cartItemsCount.innerHTML = data.count;
 
         if (data.count == 0)
