@@ -22,7 +22,7 @@ public class ProductRepository : IProductRepository
             .FirstOrDefaultAsync(a=>a.Id == id);
     }
 
-    public async Task<List<Product>> GetProductsAsync()
+    public async Task<IReadOnlyList<Product>> GetProductsAsync()
     {
         return await _context.Products
             .Include(a=>a.Brand)
