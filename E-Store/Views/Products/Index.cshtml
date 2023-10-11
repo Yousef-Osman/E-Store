@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProductVM>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+
+
+<div class="my-4">
+    <div class="mb-3 d-flex justify-content-between">
+        <h4 class="text-uppercase text-dim"><strong>Products</strong></h4>
+        <a asp-action="Create" class="btn btn-success px-4">Create</a>
+    </div>
+    @foreach (var product in Model)
+    {
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-lg-2 col-md-3 p-3">
+                    <img src="~/@product.ImageUrl" class="img-fluid" alt="...">
+                </div>
+                <div class="col-lg-10 col-md-9">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <h6 class="text-secondary">Price: <strong>@product.Price.ToString("n")</strong> EGP</h6>
+                        <h6 class="text-secondary">Brand: <strong>@product.BrandName</strong></h6>
+                        <h6 class="text-secondary">Category: <strong>@product.CategoryName</strong></h6>
+                        <div class="mt-auto ms-md-auto">
+                            <a asp-action="Details" class="btn btn-success" asp-route-id="@product.Id"><i class="fa-solid fa-eye"></i></a>
+                            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@product.Id"><i class="fa-solid fa-pen-to-square text-light"></i></a>
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@product.Id"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

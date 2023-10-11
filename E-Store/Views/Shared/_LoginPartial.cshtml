@@ -1,7 +1,4 @@
-﻿@using E_Store.Data;
-@using E_Store.Models.Enums;
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<ApplicationUser> SignInManager
+﻿@using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
@@ -12,7 +9,7 @@
                   id="cart-item-count" hidden>0</span>
         </a>
     </li>
-    @if (SignInManager.IsSignedIn(User))
+    @if (User.Identity.IsAuthenticated)
     {
         @*var fullName = $"{UserManager.GetUserAsync(User).Result.FirstName} {UserManager.GetUserAsync(User).Result.LastName}";*@
         <li class="nav-item">

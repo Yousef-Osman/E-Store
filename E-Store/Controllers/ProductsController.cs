@@ -24,4 +24,37 @@ public class ProductsController : Controller
 
         return View(model);
     }
+
+    public IActionResult Details(string id)
+    {
+        return View();
+    }
+
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Create(ProductVM model)
+    {
+        return View(model);
+    }
+
+    public IActionResult Edit()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Edit(ProductVM model)
+    {
+        return View(model);
+    }
+
+    [HttpPost]
+    public IActionResult Delete(string id)
+    {
+        return RedirectToAction(nameof(Index));
+    }
 }
