@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using E_Store.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace E_Store.Models.Entities;
 
@@ -29,6 +30,9 @@ public class Product: BaseEntity
 
     public int CategoryId { get; set; }
 
+    public string VendorId { get; set; }
+
     public Brand Brand { get; set; }
     public Category Category { get; set; }
+    public ApplicationUser Vendor { get; set; }
 }

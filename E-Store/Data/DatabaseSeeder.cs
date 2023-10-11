@@ -24,6 +24,7 @@ public static class DatabaseSeeder
     {
         var superAdminUser = new ApplicationUser
         {
+            Id = "d1801801-fc4e-4f62-afdd-55bfb3088daf", //optional - you can remove it
             FirstName = "Super",
             LastName = "Admin",
             UserName = "super_admin",
