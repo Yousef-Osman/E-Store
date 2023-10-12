@@ -1,7 +1,75 @@
-﻿@model IEnumerable<ProductVM>
+﻿@model ProductEditVM
 
 @{
     ViewData["Title"] = "Create Product";
 }
 
-<p>Create Product</p>
+<section>
+    <h4 class="mt-5 text-dim"><strong>Add New Oroduct</strong></h4>
+    <div class="row py-3">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Price" class="form-label"></label>
+                    <input asp-for="Price" class="form-control" placeholder="Price">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Stock" class="form-label"></label>
+                    <input asp-for="Stock" class="form-control" placeholder="Stock">
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="CategoryId" class="form-label"></label>
+                    <select asp-for="CategoryId" asp-items="Model.Categories" class="form-select"
+                            data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
+                        <option value=""></option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="BrandId" class="form-label"></label>
+                    <select asp-for="BrandId" asp-items="Model.Brands" class="form-select"
+                            data-placeholder="Select a Brand" data-minimum-results-for-search="Infinity">
+                        <option value=""></option>
+                    </select>
+                    <span asp-validation-for="BrandId" class="text-danger"></span>
+                </div>
+                @*<div class="mb-3">
+                <label asp-for="SelectedDevices" class="form-label"></label>
+                <select class="form-select" asp-for="SelectedDevices" asp-items="Model.Devices"
+                data-placeholder="Select devices">
+                <option></option>
+                </select>
+                <span asp-validation-for="SelectedDevices" class="text-danger"></span>
+                </div>*@
+                <div class="mb-3">
+                    <label asp-for="ImageFile" class="form-label"></label>
+                    <input asp-for="ImageFile" class="form-control">
+                    <small class="form-text text-muted">Only files are allowed with max size 1 MB.</small>
+                    <span asp-validation-for="ImageFile" class="text-danger d-block"></span>
+                </div>
+                <button type="submit" class="btn btn-success px-5 mt-2">Save</button>
+            </div>
+        </form>
+        <div class="col-md-6 d-flex justify-content-center pt-4 overflow-hidden">
+            <img class="cover-preview d-none" alt="Product Image" />
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

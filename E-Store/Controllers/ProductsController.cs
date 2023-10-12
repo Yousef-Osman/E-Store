@@ -3,6 +3,7 @@ using E_Store.Models.Entities;
 using E_Store.Repositories.interfaces;
 using E_Store.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace E_Store.Controllers;
 public class ProductsController : Controller
@@ -30,15 +31,30 @@ public class ProductsController : Controller
         return View();
     }
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
-        return View();
+        var model = new ProductEditVM
+        {
+            Brands = await _productRepo.GetBrandListAsync(),
+            Categories = await _productRepo.GetCategoryListAsync()
+        };
+
+        return View(model);
     }
 
     [HttpPost]
-    public IActionResult Create(ProductVM model)
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(ProductEditVM model)
     {
-        return View(model);
+        if (!ModelState.IsValid)
+        {
+            model.Brands = await _productRepo.GetBrandListAsync();
+            model.Categories = await _productRepo.GetCategoryListAsync();
+            return View(model);
+        }
+
+        var data = _mapper.Map<ProductEditVM, Product>(model);
+        return RedirectToAction(nameof(Index));
     }
 
     public IActionResult Edit()
@@ -47,6 +63,7 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult Edit(ProductVM model)
     {
         return View(model);

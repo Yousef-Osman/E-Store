@@ -12,5 +12,7 @@ public class MappingProfiles: Profile
             .ForMember(des => des.CategoryName, options => options.MapFrom(src => src.Category.Name))
             .ForMember(des => des.BrandName, options => options.MapFrom(src => src.Brand.Name))
             .ReverseMap();
+
+        CreateMap<Product, ProductEditVM>().ReverseMap();
     }
 }
