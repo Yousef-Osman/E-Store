@@ -14,13 +14,13 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Product> Products { get; set; }
     public DbSet<Brand> Brands { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<ProductCategory> ProductCategories { get; set; }
     public DbSet<CartItem> CartItems { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderDetail> OrdersDetails { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(builder);
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         builder.Entity<Product>().HasQueryFilter(a => a.IsDeleted == false);
@@ -28,5 +28,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         builder.Entity<Category>().HasQueryFilter(a => a.IsDeleted == false);
         builder.Entity<Order>().HasQueryFilter(a => a.IsDeleted == false);
         builder.Entity<OrderDetail>().HasQueryFilter(a => a.IsDeleted == false);
+        builder.Entity<ProductCategory>().HasKey(a => new { a.ProductId, a.CategoryId });
+        
+        base.OnModelCreating(builder);
     }
 }

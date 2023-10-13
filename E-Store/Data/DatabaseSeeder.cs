@@ -2,8 +2,6 @@
 using E_Store.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Security.Claims;
 using System.Text.Json;
 
 namespace E_Store.Data;
@@ -81,6 +79,7 @@ public static class DatabaseSeeder
                 new Category { Name = "PC", Description = "PC" },
                 new Category { Name = "Laptop", Description = "Laptop" },
                 new Category { Name = "Accessories", Description = "Accessories" },
+                new Category { Name = "Electronics", Description = "Electronics" },
             };
 
             context.Categories.AddRange(categories);
@@ -93,6 +92,14 @@ public static class DatabaseSeeder
             context.Products.AddRange(products);
         }
 
-        if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();
+        if (!context.ProductCategories.Any())
+        {
+            var productCategoriesData = File.ReadAllText("./Data/SeedData/ProductCategories.json");
+            var productCategories = JsonSerializer.Deserialize<List<ProductCategory>>(productCategoriesData);
+            context.ProductCategories.AddRange(productCategories);
+        }
+
+        if (context.ChangeTracker.HasChanges()) 
+            await context.SaveChangesAsync();
     }
 }

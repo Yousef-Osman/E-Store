@@ -6,7 +6,6 @@
     "Price": 25000,
     "Stock": 13,
     "ImageUrl": "images/products/laptop/DellLatitude3410Laptop.jpg",
-    "CategoryId": 2,
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -17,7 +16,6 @@
     "Price": 11445,
     "Stock": 14,
     "ImageUrl": "images/products/laptop/LenovoideapadL3laptop.jpg",
-    "CategoryId": 2,
     "BrandId": 3,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -28,7 +26,6 @@
     "Price": 10500,
     "Stock": 18,
     "ImageUrl": "images/products/laptop/DellInspiron15-3593Laptop.jpg",
-    "CategoryId": 2,
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -39,7 +36,6 @@
     "Price": 10600,
     "Stock": 11,
     "ImageUrl": "images/products/laptop/HP255G8Laptop.png",
-    "CategoryId": 2,
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -50,7 +46,6 @@
     "Price": 44799,
     "Stock": 19,
     "ImageUrl": "images/products/laptop/MacBookPro2021.jpg",
-    "CategoryId": 2,
     "BrandId": 6,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -61,7 +56,6 @@
     "Price": 27300,
     "Stock": 15,
     "ImageUrl": "images/products/laptop/AlienwareM15R6GamingLaptop.jpg",
-    "CategoryId": 2,
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -72,7 +66,6 @@
     "Price": 32900,
     "Stock": 17,
     "ImageUrl": "images/products/laptop/AppleMacBookPro11.jpg",
-    "CategoryId": 2,
     "BrandId": 6,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -83,7 +76,6 @@
     "Price": 70038,
     "Stock": 13,
     "ImageUrl": "images/products/laptop/AsusROGStrixGamingLaptop.jpg",
-    "CategoryId": 2,
     "BrandId": 5,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -94,7 +86,6 @@
     "Price": 3479,
     "Stock": 10,
     "ImageUrl": "images/products/accessories/DellS2421HNHDLEDMonitor.jpg",
-    "CategoryId": 3,
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -105,7 +96,6 @@
     "Price": 3899,
     "Stock": 13,
     "ImageUrl": "images/products/accessories/Samsung27inchLEDMonitor.jpg",
-    "CategoryId": 3,
     "BrandId": 7,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -116,7 +106,6 @@
     "Price": 399,
     "Stock": 19,
     "ImageUrl": "images/products/accessories/HPZ3700WirelessMouse.jpg",
-    "CategoryId": 3,
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -127,7 +116,6 @@
     "Price": 550.51,
     "Stock": 14,
     "ImageUrl": "images/products/accessories/HP330WirelessMouseKeyboard.jpg",
-    "CategoryId": 3,
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -138,7 +126,6 @@
     "Price": 25000,
     "Stock": 16,
     "ImageUrl": "images/products/laptop/DellLatitude3410Laptop.jpg",
-    "CategoryId": 2,
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -149,7 +136,6 @@
     "Price": 11445,
     "Stock": 13,
     "ImageUrl": "images/products/laptop/LenovoideapadL3laptop.jpg",
-    "CategoryId": 2,
     "BrandId": 3,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -171,7 +157,6 @@
     "Price": 10600,
     "Stock": 13,
     "ImageUrl": "images/products/laptop/HP255G8Laptop.png",
-    "CategoryId": 2,
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -182,7 +167,6 @@
     "Price": 44799,
     "Stock": 13,
     "ImageUrl": "images/products/laptop/MacBookPro2021.jpg",
-    "CategoryId": 2,
     "BrandId": 6,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -193,7 +177,6 @@
     "Price": 27300,
     "Stock": 13,
     "ImageUrl": "images/products/laptop/AlienwareM15R6GamingLaptop.jpg",
-    "CategoryId": 2,
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -204,7 +187,6 @@
     "Price": 32900,
     "Stock": 13,
     "ImageUrl": "images/products/laptop/AppleMacBookPro11.jpg",
-    "CategoryId": 2,
     "BrandId": 6,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -226,7 +208,6 @@
     "Price": 3479,
     "Stock": 13,
     "ImageUrl": "images/products/accessories/DellS2421HNHDLEDMonitor.jpg",
-    "CategoryId": 3,
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -237,7 +218,6 @@
     "Price": 3899,
     "Stock": 13,
     "ImageUrl": "images/products/accessories/Samsung27inchLEDMonitor.jpg",
-    "CategoryId": 3,
     "BrandId": 7,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -248,7 +228,6 @@
     "Price": 399,
     "Stock": 13,
     "ImageUrl": "images/products/accessories/HPZ3700WirelessMouse.jpg",
-    "CategoryId": 3,
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -259,139 +238,6 @@
     "Price": 550.51,
     "Stock": 13,
     "ImageUrl": "images/products/accessories/HP330WirelessMouseKeyboard.jpg",
-    "CategoryId": 3,
-    "BrandId": 2,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "uayrdb60-860d-4c8c-9c5c-c525ea2a63uf",
-    "Name": "Dell Latitude 3410 Laptop",
-    "Description": "Dell Latitude 3410 14\" Notebook - 1920 x 1280 - Core i7 i7-10510U 10th Gen 1.8GHz Quad-core (4 Core) - 8GB RAM - 256GB SSD",
-    "Price": 25000,
-    "Stock": 13,
-    "ImageUrl": "images/products/laptop/DellLatitude3410Laptop.jpg",
-    "CategoryId": 2,
-    "BrandId": 1,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "obudbbd3-53cb-46a0-9630-873ff7786w8d",
-    "Name": "Lenovo ideapad L3 laptop",
-    "Description": "Lenovo ideapad L3 laptop, intel 10th Gen core i5-10210U, 8 GB RAM, 1 TB HDD, NVIDIA GeForce MX130 2GB GDDR5 Graphic card, 15.6 inch FHD, Dos, Abyss Blue",
-    "Price": 11445,
-    "Stock": 13,
-    "ImageUrl": "images/products/laptop/LenovoideapadL3laptop.jpg",
-    "CategoryId": 2,
-    "BrandId": 3,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "yung8a49-539c-416e-9592-ef79cfbeb9fh",
-    "Name": "Dell Inspiron 15-3593 Laptop",
-    "Description": "2019 Dell Inspiron 3593 Laptop 15.6\", 10th Generation Intel Core i5-1035G1 Processor, 16GB DDR4 RAM 128GB Solid State Drive, HDMI, WiFi, Bluetooth, Windows 10, Black",
-    "Price": 10500,
-    "Stock": 13,
-    "ImageUrl": "images/products/laptop/DellInspiron15-3593Laptop.jpg",
-    "CategoryId": 2,
-    "BrandId": 1,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "8gt0e3a8-b1e5-4bdc-a806-94bd0fce9pof",
-    "Name": "HP 255 G8 Laptop",
-    "Description": "The HP 255 G8 keeps up with mobile workstyles, thanks to a thin and light design. Featuring a narrow border for a high screen-to-body-ratio, this laptop provides ample screen space for crushing your workload or streaming content.",
-    "Price": 10600,
-    "Stock": 13,
-    "ImageUrl": "images/products/laptop/HP255G8Laptop.png",
-    "CategoryId": 2,
-    "BrandId": 2,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "2i9ue3a8-ght5-7gdc-t906-35dd0fce97ur",
-    "Name": "Apple MacBook Pro 2021",
-    "Description": "Apple M1 Pro or M1 Max chip for a massive leap in CPU, GPU and machine learning performance. Up to 10-core CPU delivers up to 3.7x faster performance to fly through pro workflows quicker than ever.",
-    "Price": 44799,
-    "Stock": 13,
-    "ImageUrl": "images/products/laptop/MacBookPro2021.jpg",
-    "CategoryId": 2,
-    "BrandId": 6,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "z8mt4ba4-u9hl-y4no-6jo2-35d4935e32hd",
-    "Name": "Alienware M15 R6 Gaming Laptop",
-    "Description": "Dell Alienware m15 R6 Laptop 15.6 inch Non-Touch Screen Dark Side of the Moon. Intel Core i7 11th Gen i7-11800H Eight-Core Processor 2.3GHz (4.6GHz With Turbo Boost). 256GB SSD Hard Drive & 8GB RAM Memory",
-    "Price": 27300,
-    "Stock": 13,
-    "ImageUrl": "images/products/laptop/AlienwareM15R6GamingLaptop.jpg",
-    "CategoryId": 2,
-    "BrandId": 1,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "87gy5pog-6jo2-5p8b-p9jk-yi58935eq9bh",
-    "Name": "Apple MacBook Pro M1",
-    "Description": "Apple-designed M1 chip for a giant leap in CPU, GPU, and machine learning performance. Get more done with up to 20 hours of battery life, the longest ever in a Mac. 16-core Neural Engine for advanced machine learning",
-    "Price": 32900,
-    "Stock": 13,
-    "ImageUrl": "images/products/laptop/AppleMacBookPro11.jpg",
-    "CategoryId": 2,
-    "BrandId": 6,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "ue7g9a2u-3l94-qi82-yo5o-q9t89hieqejd",
-    "Name": "Asus ROG Strix Gaming Laptop",
-    "Description": "Asus ROG Strix SCAR G533QS-HF017T Gaming Laptop, AMD Ryzen 9-5900HX - 32GB - 1TB SSD - RTX 3080 - 15.6-inch FHD - Win10 - 90NR0551-M000T0 - Black",
-    "Price": 70038,
-    "Stock": 13,
-    "ImageUrl": "images/products/laptop/AsusROGStrixGamingLaptop.jpg",
-    "CategoryId": 2,
-    "BrandId": 5,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "5uvj3c12-aedb-4b0d-92cc-eb0209110xnj",
-    "Name": "Dell S2421HN HD LED Monitor",
-    "Description": "Aspect ratio: 16:9. Screen size: 24 Inches. Item weight: 12.96 Pounds. Hardware interface: VGA, USB, HDMI. Model number: S2421HN. Brand: Dell. Monitor Type: LED. Model number: S2421HN",
-    "Price": 3479,
-    "Stock": 13,
-    "ImageUrl": "images/products/accessories/DellS2421HNHDLEDMonitor.jpg",
-    "CategoryId": 3,
-    "BrandId": 1,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "vn7tcb93-81a3-4267-8420-ffc025e4eehc",
-    "Name": "Samsung 27 inch LED Monitor",
-    "Description": "Aspect ratio: 16:9. Response time: 4 Milliseconds. Specific uses for product: Gaming. Brand: SAMSUNG. Screen size: 27 Inches. Colour: Black. Item weight: 5680 Grams. Model number: LC27F390FHMXUE.",
-    "Price": 3899,
-    "Stock": 13,
-    "ImageUrl": "images/products/accessories/Samsung27inchLEDMonitor.jpg",
-    "CategoryId": 3,
-    "BrandId": 7,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "7ivf4bd2-6776-4058-9fee-eee3c96c5quv",
-    "Name": "HP Z3700 Wireless Mouse",
-    "Description": "Highly accurate-1,200 optical sensors give you exceptional accuracy and incredible speed. Good Quality with a high end. HP Z3700 Wireless Mouse - Black Onyx. Easy to use. Personal Computer type",
-    "Price": 399,
-    "Stock": 13,
-    "ImageUrl": "images/products/accessories/HPZ3700WirelessMouse.jpg",
-    "CategoryId": 3,
-    "BrandId": 2,
-    "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
-  },
-  {
-    "Id": "1uftbb25-4c92-430a-9c3c-ee9e28317cnu",
-    "Name": "HP 330 Wireless Mouse & Keyboard Combination Arab",
-    "Description": "This keyboard and mouse are ergonomically designed to fit your natural comfortable position. Left, right, and scroll wheel mouse buttons keep your motions in control. LED indicators illuminate Number Lock, Caps Lock, and Scroll Lock so you don't have to guess what's on or off. One less thing.",
-    "Price": 550.51,
-    "Stock": 13,
-    "ImageUrl": "images/products/accessories/HP330WirelessMouseKeyboard.jpg",
-    "CategoryId": 3,
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   }
