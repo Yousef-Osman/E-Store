@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Store.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231007115223_AddProductNameToOrderDetails")]
-    partial class AddProductNameToOrderDetails
+    [Migration("20231013071252_addOrdersAndOrderDetailsTales")]
+    partial class addOrdersAndOrderDetailsTales
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -348,9 +348,6 @@ namespace E_Store.Data.Migrations
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
@@ -383,13 +380,31 @@ namespace E_Store.Data.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
+                    b.Property<string>("VendorId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("VendorId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("E_Store.Models.Entities.ProductCategory", b =>
+                {
+                    b.Property<string>("ProductId")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -472,10 +487,12 @@ namespace E_Store.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -512,10 +529,12 @@ namespace E_Store.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -574,15 +593,32 @@ namespace E_Store.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("E_Store.Data.ApplicationUser", "Vendor")
+                        .WithMany()
+                        .HasForeignKey("VendorId");
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Vendor");
+                });
+
+            modelBuilder.Entity("E_Store.Models.Entities.ProductCategory", b =>
+                {
                     b.HasOne("E_Store.Models.Entities.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Brand");
+                    b.HasOne("E_Store.Models.Entities.Product", "Product")
+                        .WithMany("Categories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -639,6 +675,11 @@ namespace E_Store.Data.Migrations
             modelBuilder.Entity("E_Store.Models.Entities.Order", b =>
                 {
                     b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("E_Store.Models.Entities.Product", b =>
+                {
+                    b.Navigation("Categories");
                 });
 #pragma warning restore 612, 618
         }
