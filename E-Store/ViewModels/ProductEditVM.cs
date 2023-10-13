@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using E_Store.Attributes;
+using E_Store.Helpers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace E_Store.ViewModels;
@@ -6,15 +8,17 @@ namespace E_Store.ViewModels;
 public class ProductEditVM: ProductVM
 {
     [Required, Display(Name = "Image")]
+    [AllowedExtensions(FileSettings.AllowedExtensions)]
+    [MaxFileSize(FileSettings.MaxSizeInBytes)]
     public IFormFile ImageFile { get; set; }
 
-    [Required, Display(Name = "Category")]
-    public int CategoryId { get; set; }
+    [Required, Display(Name = "Categories")]
+    public List<int> SelectedCategories { get; set; }
 
     [Required, Display(Name = "Brand")]
-    public int BrandId { get; set; }
+    public int SelectedBrand { get; set; }
 
-    public List<SelectListItem> Categories { get; set; }
+    public IEnumerable<SelectListItem> Categories { get; set; }
 
-    public List<SelectListItem> Brands { get; set; }
+    public IEnumerable<SelectListItem> Brands { get; set; }
 }

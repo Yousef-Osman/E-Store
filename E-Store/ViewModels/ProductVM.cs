@@ -25,6 +25,6 @@ public class ProductVM
     [Display(Name="Brand")]
     public string BrandName{ get; set; }
 
-    [Display(Name = "Category")]
-    public string CategoryName { get; set; }
+    [Display(Name = "Categories")]
+    public List<string> CategoryNames { get; set; }
 }
