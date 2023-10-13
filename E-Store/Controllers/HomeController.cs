@@ -22,15 +22,6 @@ public class HomeController : Controller
         return View(products);
     }
 
-    public IActionResult Details(string id)
-    {
-        if (string.IsNullOrWhiteSpace(id))
-            return BadRequest();
-
-        var product = _context.Products.Find(id);
-        return View(product);
-    }
-    
     public IActionResult Privacy()
     {
         return View();

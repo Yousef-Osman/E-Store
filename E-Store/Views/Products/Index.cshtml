@@ -4,8 +4,6 @@
     ViewData["Title"] = "Products";
 }
 
-
-
 <div class="my-4">
     <div class="mb-3 d-flex justify-content-between">
         <h4 class="text-uppercase text-dim"><strong>Products</strong></h4>
@@ -24,7 +22,7 @@
                         <p class="card-text">@product.Description</p>
                         <h6 class="text-secondary">Price: <strong>@product.Price.ToString("n")</strong> EGP</h6>
                         <h6 class="text-secondary">Brand: <strong>@product.BrandName</strong></h6>
-                        <h6 class="text-secondary">Category: <strong>@product.CategoryName</strong></h6>
+                        @*<h6 class="text-secondary">Category: <strong>@product.CategoryName</strong></h6>*@
                         <div class="mt-auto ms-md-auto">
                             <a asp-action="Details" class="btn btn-success" asp-route-id="@product.Id"><i class="fa-solid fa-eye"></i></a>
                             <a asp-action="Edit" class="btn btn-warning" asp-route-id="@product.Id"><i class="fa-solid fa-pen-to-square text-light"></i></a>

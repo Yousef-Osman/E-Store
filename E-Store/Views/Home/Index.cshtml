@@ -54,7 +54,7 @@
                         <p class="card-text">@product.Description</p>
                         <h6 class="mb-3 text-secondary">Price: <span class="text-success h4">@product.Price.ToString("n")</span> EGP</h6>
                         <div class="mt-auto">
-                            <a asp-action="details" asp-route-id="@product.Id" class="btn btn-outline-success px-4">Details</a>
+                            <a asp-controller="Products" asp-action="details" asp-route-id="@product.Id" class="btn btn-outline-success px-4">Details</a>
                             <a asp-controller="ShoppingCart" asp-action="AddItemToCart" asp-route-id="@product.Id"
                                asp-route-returnUrl="@Context.Request.Path" class="btn btn-warning" style="color: #444;"> Add to cart</a>
                         </div>
