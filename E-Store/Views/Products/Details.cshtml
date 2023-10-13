@@ -32,8 +32,14 @@
                     <p class="mb-0">@Model.Description</p>
                     <hr class="my-4">
                     <div>
-                        <h6 class="text-secondary">Brand: <span class="text-dark">Lenovo</span></h6>
-                        <h6 class="text-secondary">Category: <span class="text-dark">Laptop</span></h6>
+                        <h6 class="text-secondary">Brand: <strong>@Model.BrandName</strong></h6>
+                        <h6 class="text-secondary">
+                            Categories:
+                            @foreach (var category in @Model.CategoryNames)
+                            {
+                                <span class="badge bg-secondary" style="margin-bottom:2px;">@category</span>
+                            }
+                        </h6>
                     </div>
                     <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary mt-3 mt-auto ms-auto">Back to results</a>
                 </div>

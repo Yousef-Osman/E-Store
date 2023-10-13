@@ -41,7 +41,7 @@
                 </div>
                 <div class="mb-3">
                     <label asp-for="SelectedCategories" class="form-label"></label><span class="text-muted"> (Press Control for multi select)</span>
-                    <select asp-for="SelectedCategories" asp-items="Model.Categories" class="form-select"
+                    <select asp-for="SelectedCategories" asp-items="Model.Categories" size="3" class="form-select"
                             data-placeholder="Select categories">
                     </select>
                     <span asp-validation-for="SelectedCategories" class="text-danger"></span>

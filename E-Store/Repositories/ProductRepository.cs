@@ -3,7 +3,6 @@ using E_Store.Helpers;
 using E_Store.Models.Entities;
 using E_Store.Repositories.interfaces;
 using E_Store.ViewModels;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -30,6 +29,8 @@ public class ProductRepository : IProductRepository
         return await _context.Products
             .Include(a => a.Brand)
             .Include(a => a.Categories)
+            .ThenInclude(b=>b.Category)
+            .AsNoTracking()
             .ToListAsync();
     }
 
@@ -41,7 +42,9 @@ public class ProductRepository : IProductRepository
             .Where(a => a.VendorId == vendorId)
             .Include(a => a.Brand)
             .Include(a => a.Categories)
+            .ThenInclude(b => b.Category)
             .OrderByDescending(a => a.Created)
+            .AsNoTracking()
             .ToListAsync();
     }
 
@@ -50,6 +53,8 @@ public class ProductRepository : IProductRepository
         return await _context.Products
             .Include(a => a.Brand)
             .Include(a => a.Categories)
+            .ThenInclude(b => b.Category)
+            .AsNoTracking()
             .FirstOrDefaultAsync(a => a.Id == id);
     }
 
@@ -77,6 +82,7 @@ public class ProductRepository : IProductRepository
         return await _context.Brands
             .Select(a => new SelectListItem() { Value = a.Id.ToString(), Text = a.Name })
             .OrderBy(a => a.Text)
+            .AsNoTracking()
             .ToListAsync();
     }
 
@@ -85,6 +91,7 @@ public class ProductRepository : IProductRepository
         return await _context.Categories
             .Select(a => new SelectListItem() { Value = a.Id.ToString(), Text = a.Name })
             .OrderBy(a => a.Text)
+            .AsNoTracking()
             .ToListAsync();
     }
 

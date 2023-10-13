@@ -9,13 +9,13 @@ public class MappingProfiles: Profile
     public MappingProfiles()
     {
         CreateMap<Product, ProductVM>()
-            //.ForMember(des => des.CategoryName, options => options.MapFrom(src => src.Category.Name))
-            .ForMember(des => des.BrandName, options => options.MapFrom(src => src.Brand.Name))
-            .ReverseMap();
+            .ForMember(des => des.CategoryNames, options => options.MapFrom(src => 
+                        src.Categories.Select(a=>a.Category.Name).ToList()))
+            .ForMember(des => des.BrandName, options => options.MapFrom(src => src.Brand.Name));
 
         CreateMap<Product, ProductEditVM>()
             .ForMember(des => des.SelectedBrand, options => options.MapFrom(src => src.Brand.Id))
-            //.ForMember(des => des.SelectedCategories, options => options.MapFrom(src => src.Categories))
-            .ReverseMap();
+            .ForMember(des => des.SelectedCategories, options => options.MapFrom(src =>
+                        src.Categories.Select(a=>a.Category.Id).ToList()));
     }
 }
