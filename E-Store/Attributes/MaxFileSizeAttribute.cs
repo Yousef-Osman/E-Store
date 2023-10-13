@@ -19,7 +19,7 @@ public class MaxFileSizeAttribute : ValidationAttribute
         if (file != null)
         {
             if (file.Length > _maxFileSize)
-                return new ValidationResult($"File size must not exceed {FileSettings.MaxSizeInMB} MB");
+                return new ValidationResult($"File size must not exceed {FileSettings.MaxFileSizeInMB} MB");
         }
 
         return ValidationResult.Success;

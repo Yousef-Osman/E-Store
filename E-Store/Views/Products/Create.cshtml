@@ -7,8 +7,8 @@
 <section>
     <h4 class="mt-5 text-dim"><strong>Add New Oroduct</strong></h4>
     <div class="row py-3">
-        <form asp-action="Create" enctype="multipart/form-data" method="post">
-            <div class="col-md-6">
+        <div class="col-md-6">
+            <form asp-action="Create" enctype="multipart/form-data" method="post">
                 <div class="mb-3">
                     <label asp-for="Name" class="form-label"></label>
                     <input asp-for="Name" class="form-control" placeholder="Name">
@@ -19,21 +19,23 @@
                     <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="Price" class="form-label"></label>
-                    <input asp-for="Price" class="form-control" placeholder="Price">
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Stock" class="form-label"></label>
-                    <input asp-for="Stock" class="form-control" placeholder="Stock">
-                    <span asp-validation-for="Stock" class="text-danger"></span>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label asp-for="Price" class="form-label"></label>
+                        <input asp-for="Price" class="form-control" placeholder="Price">
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="col mb-3">
+                        <label asp-for="Stock" class="form-label"></label>
+                        <input asp-for="Stock" class="form-control" placeholder="Stock">
+                        <span asp-validation-for="Stock" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label asp-for="SelectedBrand" class="form-label"></label>
                     <select asp-for="SelectedBrand" asp-items="Model.Brands" class="form-select"
                             data-placeholder="Select a Brand" data-minimum-results-for-search="Infinity">
-                        <option>Select a Brand</option>
+                        <option value="">Select a Brand</option>
                     </select>
                     <span asp-validation-for="SelectedBrand" class="text-danger"></span>
                 </div>
@@ -46,21 +48,37 @@
                 </div>
                 <div class="mb-3">
                     <label asp-for="ImageFile" class="form-label"></label>
-                    <input asp-for="ImageFile" class="form-control">
-                    <small class="form-text text-muted">Only files are allowed with max size 1 MB.</small>
+                    <input asp-for="ImageFile" class="form-control"
+                           data-rule-extension="@FileSettings.AllowedExtensions.Replace(".", string.Empty)"
+                           data-msg-extension="Not allowed extension"
+                           data-rule-filesize="@FileSettings.MaxFileSizeInBytes"
+                           data-msg-filesize="Maximum allowed size is @FileSettings.MaxFileSizeInMB MB">
+                    <small class="form-text text-muted">Only @FileSettings.AllowedExtensions files are allowed with max size @FileSettings.MaxFileSizeInMB MB.</small>
                     <span asp-validation-for="ImageFile" class="text-danger d-block"></span>
                 </div>
                 <button type="submit" class="btn btn-success px-5 mt-2">Save</button>
-            </div>
-        </form>
-        <div class="col-md-6 d-flex justify-content-center pt-4 overflow-hidden">
-            <img class="cover-preview d-none" alt="Product Image" />
+            </form>
+        </div>
+        <div class="col-md-6" style="margin-top:2rem!important;">
+            <img id="product-image" class="col-11 rounded-3 float-end d-none" alt="Product Image" />
         </div>
     </div>
 </section>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+    <script>
+        $.validator.addMethod('filesize', function (value, element, param) {
+            return this.optional(element) || element.files[0].size <= param;
+        });
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            document.getElementById('ImageFile').onchange = function () {
+                var image = document.getElementById('product-image');
+                image.setAttribute('src', window.URL.createObjectURL(this.files[0]));
+                image.classList.remove('d-none');
+            }
+        });
+    </script>
 }

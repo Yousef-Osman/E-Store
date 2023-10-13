@@ -9,7 +9,7 @@ public class ProductEditVM: ProductVM
 {
     [Required, Display(Name = "Image")]
     [AllowedExtensions(FileSettings.AllowedExtensions)]
-    [MaxFileSize(FileSettings.MaxSizeInBytes)]
+    [MaxFileSize(FileSettings.MaxFileSizeInBytes)]
     public IFormFile ImageFile { get; set; }
 
     [Required, Display(Name = "Categories")]
