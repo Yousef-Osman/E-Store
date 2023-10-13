@@ -3,7 +3,6 @@ using E_Store.Models.Entities;
 using E_Store.Repositories.interfaces;
 using E_Store.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace E_Store.Controllers;
 public class ProductsController : Controller
@@ -20,25 +19,25 @@ public class ProductsController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var products = await _productRepo.GetProductsAsync();
+        var products = await _productRepo.GetVendorProductsAsync();
         var model = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductVM>>(products);
 
         return View(model);
     }
 
-    public IActionResult Details(string id)
+    public async Task<IActionResult> Details(string id)
     {
-        return View();
+        if (string.IsNullOrWhiteSpace(id))
+            return BadRequest();
+
+        var product = await _productRepo.GetProductAsync(id);
+        var model = _mapper.Map<Product, ProductVM>(product);
+        return View(model);
     }
 
     public async Task<IActionResult> Create()
     {
-        var model = new ProductEditVM
-        {
-            Brands = await _productRepo.GetBrandListAsync(),
-            Categories = await _productRepo.GetCategoryListAsync()
-        };
-
+        var model = await FillModel(new ProductEditVM());
         return View(model);
     }
 
@@ -48,12 +47,15 @@ public class ProductsController : Controller
     {
         if (!ModelState.IsValid)
         {
-            model.Brands = await _productRepo.GetBrandListAsync();
-            model.Categories = await _productRepo.GetCategoryListAsync();
+            model = await FillModel(model);
             return View(model);
         }
 
-        var data = _mapper.Map<ProductEditVM, Product>(model);
+        var success = await _productRepo.CreateAsync(model);
+
+        if (!success)
+            return StatusCode(StatusCodes.Status500InternalServerError);
+
         return RedirectToAction(nameof(Index));
     }
 
@@ -73,5 +75,12 @@ public class ProductsController : Controller
     public IActionResult Delete(string id)
     {
         return RedirectToAction(nameof(Index));
+    }
+
+    private async Task<ProductEditVM> FillModel(ProductEditVM model)
+    {
+        model.Brands = await _productRepo.GetBrandListAsync();
+        model.Categories = await _productRepo.GetCategoryListAsync();
+        return model; //return is unnecessary because it's a reference type
     }
 }

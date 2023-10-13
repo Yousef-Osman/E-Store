@@ -8,6 +8,7 @@ public class Product: BaseEntity
     public Product()
     {
         Id = Guid.NewGuid().ToString();
+        Categories = new List<ProductCategory>();
     }
 
     [Key, StringLength(50)]

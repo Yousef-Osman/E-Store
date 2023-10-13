@@ -30,29 +30,20 @@
                     <span asp-validation-for="Stock" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <label asp-for="CategoryId" class="form-label"></label>
-                    <select asp-for="CategoryId" asp-items="Model.Categories" class="form-select"
-                            data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
-                        <option value=""></option>
+                    <label asp-for="SelectedBrand" class="form-label"></label>
+                    <select asp-for="SelectedBrand" asp-items="Model.Brands" class="form-select"
+                            data-placeholder="Select a Brand" data-minimum-results-for-search="Infinity">
+                        <option>Select a Brand</option>
                     </select>
-                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    <span asp-validation-for="SelectedBrand" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <label asp-for="BrandId" class="form-label"></label>
-                    <select asp-for="BrandId" asp-items="Model.Brands" class="form-select"
-                            data-placeholder="Select a Brand" data-minimum-results-for-search="Infinity">
-                        <option value=""></option>
+                    <label asp-for="SelectedCategories" class="form-label"></label><span class="text-muted"> (Press Control for multi select)</span>
+                    <select asp-for="SelectedCategories" asp-items="Model.Categories" class="form-select"
+                            data-placeholder="Select categories">
                     </select>
-                    <span asp-validation-for="BrandId" class="text-danger"></span>
+                    <span asp-validation-for="SelectedCategories" class="text-danger"></span>
                 </div>
-                @*<div class="mb-3">
-                <label asp-for="SelectedDevices" class="form-label"></label>
-                <select class="form-select" asp-for="SelectedDevices" asp-items="Model.Devices"
-                data-placeholder="Select devices">
-                <option></option>
-                </select>
-                <span asp-validation-for="SelectedDevices" class="text-danger"></span>
-                </div>*@
                 <div class="mb-3">
                     <label asp-for="ImageFile" class="form-label"></label>
                     <input asp-for="ImageFile" class="form-control">
