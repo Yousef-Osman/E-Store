@@ -59,16 +59,34 @@ public class ProductsController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    public IActionResult Edit()
+    public async Task<IActionResult> Edit(string id)
     {
-        return View();
+        var product = await _productRepo.GetProductAsync(id);
+
+        if (product == null)
+            return NotFound();
+
+        var model = _mapper.Map<Product, ProductEditVM>(product);
+        model = await FillModel(model);
+        return View(model);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Edit(ProductVM model)
+    public async Task<IActionResult> Edit(ProductEditVM model)
     {
-        return View(model);
+        if(!ModelState.IsValid)
+        {
+            model = await FillModel(model);
+            return View(model);
+        }
+
+        var success = await _productRepo.UpdateAsync(model);
+
+        if (!success)
+            return StatusCode(StatusCodes.Status500InternalServerError);
+
+        return RedirectToAction(nameof(Details), new { id = model.Id});
     }
 
     [HttpPost]

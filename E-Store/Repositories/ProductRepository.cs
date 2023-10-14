@@ -77,6 +77,29 @@ public class ProductRepository : IProductRepository
         return await _context.SaveChangesAsync() > 0;
     }
 
+    public async Task<bool> UpdateAsync(ProductEditVM model)
+    {
+        var product = await _context.Products
+            //.Include(a => a.Categories)
+            .FirstOrDefaultAsync(a => a.Id == model.Id);
+
+        if (product == null)
+            return false;
+
+        var fileName = product.ImageUrl.Replace(FileSettings.ImagesPath, "");
+        await SaveFile(model.ImageFile, fileName);
+
+        product.Name = model.Name;
+        product.Description = model.Description;
+        product.Stock = model.Stock;
+        product.Price = model.Price;
+        product.BrandId = model.SelectedBrand;
+        product.LastModified = DateTime.Now;
+
+        _context.Update(product);
+        return await _context.SaveChangesAsync() > 0;
+    }
+
     public async Task<List<SelectListItem>> GetBrandListAsync()
     {
         return await _context.Brands
@@ -95,10 +118,10 @@ public class ProductRepository : IProductRepository
             .ToListAsync();
     }
 
-    private async Task<string> SaveFile(IFormFile file)
+    private async Task<string> SaveFile(IFormFile file, string fileName = null)
     {
         var folerPath = $"{_environment.WebRootPath}/{FileSettings.ImagesPath}";
-        var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+        fileName ??= $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
         var filePath = Path.Combine(folerPath, fileName);
 
         using var stream = File.Create(filePath);
