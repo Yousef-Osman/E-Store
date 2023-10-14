@@ -5,7 +5,7 @@
     "Description": "Dell Latitude 3410 14\" Notebook - 1920 x 1280 - Core i7 i7-10510U 10th Gen 1.8GHz Quad-core (4 Core) - 8GB RAM - 256GB SSD",
     "Price": 25000,
     "Stock": 13,
-    "ImageUrl": "images/products/laptop/DellLatitude3410Laptop.jpg",
+    "ImageUrl": "images/products/DellLatitude3410Laptop.jpg",
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -15,7 +15,7 @@
     "Description": "Lenovo ideapad L3 laptop, intel 10th Gen core i5-10210U, 8 GB RAM, 1 TB HDD, NVIDIA GeForce MX130 2GB GDDR5 Graphic card, 15.6 inch FHD, Dos, Abyss Blue",
     "Price": 11445,
     "Stock": 14,
-    "ImageUrl": "images/products/laptop/LenovoideapadL3laptop.jpg",
+    "ImageUrl": "images/products/LenovoideapadL3laptop.jpg",
     "BrandId": 3,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -25,7 +25,7 @@
     "Description": "2019 Dell Inspiron 3593 Laptop 15.6\", 10th Generation Intel Core i5-1035G1 Processor, 16GB DDR4 RAM 128GB Solid State Drive, HDMI, WiFi, Bluetooth, Windows 10, Black",
     "Price": 10500,
     "Stock": 18,
-    "ImageUrl": "images/products/laptop/DellInspiron15-3593Laptop.jpg",
+    "ImageUrl": "images/products/DellInspiron15-3593Laptop.jpg",
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -35,7 +35,7 @@
     "Description": "The HP 255 G8 keeps up with mobile workstyles, thanks to a thin and light design. Featuring a narrow border for a high screen-to-body-ratio, this laptop provides ample screen space for crushing your workload or streaming content.",
     "Price": 10600,
     "Stock": 11,
-    "ImageUrl": "images/products/laptop/HP255G8Laptop.png",
+    "ImageUrl": "images/products/HP255G8Laptop.png",
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -45,7 +45,7 @@
     "Description": "Apple M1 Pro or M1 Max chip for a massive leap in CPU, GPU and machine learning performance. Up to 10-core CPU delivers up to 3.7x faster performance to fly through pro workflows quicker than ever.",
     "Price": 44799,
     "Stock": 19,
-    "ImageUrl": "images/products/laptop/MacBookPro2021.jpg",
+    "ImageUrl": "images/products/MacBookPro2021.jpg",
     "BrandId": 6,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -55,7 +55,7 @@
     "Description": "Dell Alienware m15 R6 Laptop 15.6 inch Non-Touch Screen Dark Side of the Moon. Intel Core i7 11th Gen i7-11800H Eight-Core Processor 2.3GHz (4.6GHz With Turbo Boost). 256GB SSD Hard Drive & 8GB RAM Memory",
     "Price": 27300,
     "Stock": 15,
-    "ImageUrl": "images/products/laptop/AlienwareM15R6GamingLaptop.jpg",
+    "ImageUrl": "images/products/AlienwareM15R6GamingLaptop.jpg",
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -65,7 +65,7 @@
     "Description": "Apple-designed M1 chip for a giant leap in CPU, GPU, and machine learning performance. Get more done with up to 20 hours of battery life, the longest ever in a Mac. 16-core Neural Engine for advanced machine learning",
     "Price": 32900,
     "Stock": 17,
-    "ImageUrl": "images/products/laptop/AppleMacBookPro11.jpg",
+    "ImageUrl": "images/products/AppleMacBookPro11.jpg",
     "BrandId": 6,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -75,7 +75,7 @@
     "Description": "Asus ROG Strix SCAR G533QS-HF017T Gaming Laptop, AMD Ryzen 9-5900HX - 32GB - 1TB SSD - RTX 3080 - 15.6-inch FHD - Win10 - 90NR0551-M000T0 - Black",
     "Price": 70038,
     "Stock": 13,
-    "ImageUrl": "images/products/laptop/AsusROGStrixGamingLaptop.jpg",
+    "ImageUrl": "images/products/AsusROGStrixGamingLaptop.jpg",
     "BrandId": 5,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -85,7 +85,7 @@
     "Description": "Aspect ratio: 16:9. Screen size: 24 Inches. Item weight: 12.96 Pounds. Hardware interface: VGA, USB, HDMI. Model number: S2421HN. Brand: Dell. Monitor Type: LED. Model number: S2421HN",
     "Price": 3479,
     "Stock": 10,
-    "ImageUrl": "images/products/accessories/DellS2421HNHDLEDMonitor.jpg",
+    "ImageUrl": "images/products/DellS2421HNHDLEDMonitor.jpg",
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -95,7 +95,7 @@
     "Description": "Aspect ratio: 16:9. Response time: 4 Milliseconds. Specific uses for product: Gaming. Brand: SAMSUNG. Screen size: 27 Inches. Colour: Black. Item weight: 5680 Grams. Model number: LC27F390FHMXUE.",
     "Price": 3899,
     "Stock": 13,
-    "ImageUrl": "images/products/accessories/Samsung27inchLEDMonitor.jpg",
+    "ImageUrl": "images/products/Samsung27inchLEDMonitor.jpg",
     "BrandId": 7,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -105,7 +105,7 @@
     "Description": "Highly accurate-1,200 optical sensors give you exceptional accuracy and incredible speed. Good Quality with a high end. HP Z3700 Wireless Mouse - Black Onyx. Easy to use. Personal Computer type",
     "Price": 399,
     "Stock": 19,
-    "ImageUrl": "images/products/accessories/HPZ3700WirelessMouse.jpg",
+    "ImageUrl": "images/products/HPZ3700WirelessMouse.jpg",
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -115,7 +115,7 @@
     "Description": "This keyboard and mouse are ergonomically designed to fit your natural comfortable position. Left, right, and scroll wheel mouse buttons keep your motions in control. LED indicators illuminate Number Lock, Caps Lock, and Scroll Lock so you don't have to guess what's on or off. One less thing.",
     "Price": 550.51,
     "Stock": 14,
-    "ImageUrl": "images/products/accessories/HP330WirelessMouseKeyboard.jpg",
+    "ImageUrl": "images/products/HP330WirelessMouseKeyboard.jpg",
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -125,7 +125,7 @@
     "Description": "Dell Latitude 3410 14\" Notebook - 1920 x 1280 - Core i7 i7-10510U 10th Gen 1.8GHz Quad-core (4 Core) - 8GB RAM - 256GB SSD",
     "Price": 25000,
     "Stock": 16,
-    "ImageUrl": "images/products/laptop/DellLatitude3410Laptop.jpg",
+    "ImageUrl": "images/products/DellLatitude3410Laptop.jpg",
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -135,7 +135,7 @@
     "Description": "Lenovo ideapad L3 laptop, intel 10th Gen core i5-10210U, 8 GB RAM, 1 TB HDD, NVIDIA GeForce MX130 2GB GDDR5 Graphic card, 15.6 inch FHD, Dos, Abyss Blue",
     "Price": 11445,
     "Stock": 13,
-    "ImageUrl": "images/products/laptop/LenovoideapadL3laptop.jpg",
+    "ImageUrl": "images/products/LenovoideapadL3laptop.jpg",
     "BrandId": 3,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -145,7 +145,7 @@
     "Description": "2019 Dell Inspiron 3593 Laptop 15.6\", 10th Generation Intel Core i5-1035G1 Processor, 16GB DDR4 RAM 128GB Solid State Drive, HDMI, WiFi, Bluetooth, Windows 10, Black",
     "Price": 10500,
     "Stock": 11,
-    "ImageUrl": "images/products/laptop/DellInspiron15-3593Laptop.jpg",
+    "ImageUrl": "images/products/DellInspiron15-3593Laptop.jpg",
     "CategoryId": 2,
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
@@ -156,7 +156,7 @@
     "Description": "The HP 255 G8 keeps up with mobile workstyles, thanks to a thin and light design. Featuring a narrow border for a high screen-to-body-ratio, this laptop provides ample screen space for crushing your workload or streaming content.",
     "Price": 10600,
     "Stock": 13,
-    "ImageUrl": "images/products/laptop/HP255G8Laptop.png",
+    "ImageUrl": "images/products/HP255G8Laptop.png",
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -166,7 +166,7 @@
     "Description": "Apple M1 Pro or M1 Max chip for a massive leap in CPU, GPU and machine learning performance. Up to 10-core CPU delivers up to 3.7x faster performance to fly through pro workflows quicker than ever.",
     "Price": 44799,
     "Stock": 13,
-    "ImageUrl": "images/products/laptop/MacBookPro2021.jpg",
+    "ImageUrl": "images/products/MacBookPro2021.jpg",
     "BrandId": 6,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -176,7 +176,7 @@
     "Description": "Dell Alienware m15 R6 Laptop 15.6 inch Non-Touch Screen Dark Side of the Moon. Intel Core i7 11th Gen i7-11800H Eight-Core Processor 2.3GHz (4.6GHz With Turbo Boost). 256GB SSD Hard Drive & 8GB RAM Memory",
     "Price": 27300,
     "Stock": 13,
-    "ImageUrl": "images/products/laptop/AlienwareM15R6GamingLaptop.jpg",
+    "ImageUrl": "images/products/AlienwareM15R6GamingLaptop.jpg",
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -186,7 +186,7 @@
     "Description": "Apple-designed M1 chip for a giant leap in CPU, GPU, and machine learning performance. Get more done with up to 20 hours of battery life, the longest ever in a Mac. 16-core Neural Engine for advanced machine learning",
     "Price": 32900,
     "Stock": 13,
-    "ImageUrl": "images/products/laptop/AppleMacBookPro11.jpg",
+    "ImageUrl": "images/products/AppleMacBookPro11.jpg",
     "BrandId": 6,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -196,7 +196,7 @@
     "Description": "Asus ROG Strix SCAR G533QS-HF017T Gaming Laptop, AMD Ryzen 9-5900HX - 32GB - 1TB SSD - RTX 3080 - 15.6-inch FHD - Win10 - 90NR0551-M000T0 - Black",
     "Price": 70038,
     "Stock": 13,
-    "ImageUrl": "images/products/laptop/AsusROGStrixGamingLaptop.jpg",
+    "ImageUrl": "images/products/AsusROGStrixGamingLaptop.jpg",
     "CategoryId": 2,
     "BrandId": 5,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
@@ -207,7 +207,7 @@
     "Description": "Aspect ratio: 16:9. Screen size: 24 Inches. Item weight: 12.96 Pounds. Hardware interface: VGA, USB, HDMI. Model number: S2421HN. Brand: Dell. Monitor Type: LED. Model number: S2421HN",
     "Price": 3479,
     "Stock": 13,
-    "ImageUrl": "images/products/accessories/DellS2421HNHDLEDMonitor.jpg",
+    "ImageUrl": "images/products/DellS2421HNHDLEDMonitor.jpg",
     "BrandId": 1,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -217,7 +217,7 @@
     "Description": "Aspect ratio: 16:9. Response time: 4 Milliseconds. Specific uses for product: Gaming. Brand: SAMSUNG. Screen size: 27 Inches. Colour: Black. Item weight: 5680 Grams. Model number: LC27F390FHMXUE.",
     "Price": 3899,
     "Stock": 13,
-    "ImageUrl": "images/products/accessories/Samsung27inchLEDMonitor.jpg",
+    "ImageUrl": "images/products/Samsung27inchLEDMonitor.jpg",
     "BrandId": 7,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -227,7 +227,7 @@
     "Description": "Highly accurate-1,200 optical sensors give you exceptional accuracy and incredible speed. Good Quality with a high end. HP Z3700 Wireless Mouse - Black Onyx. Easy to use. Personal Computer type",
     "Price": 399,
     "Stock": 13,
-    "ImageUrl": "images/products/accessories/HPZ3700WirelessMouse.jpg",
+    "ImageUrl": "images/products/HPZ3700WirelessMouse.jpg",
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   },
@@ -237,7 +237,7 @@
     "Description": "This keyboard and mouse are ergonomically designed to fit your natural comfortable position. Left, right, and scroll wheel mouse buttons keep your motions in control. LED indicators illuminate Number Lock, Caps Lock, and Scroll Lock so you don't have to guess what's on or off. One less thing.",
     "Price": 550.51,
     "Stock": 13,
-    "ImageUrl": "images/products/accessories/HP330WirelessMouseKeyboard.jpg",
+    "ImageUrl": "images/products/HP330WirelessMouseKeyboard.jpg",
     "BrandId": 2,
     "VendorId": "d1801801-fc4e-4f62-afdd-55bfb3088daf"
   }
