@@ -11,6 +11,7 @@ public interface IProductRepository
     public Task<Product> GetProductAsync(string id);
     public Task<bool> CreateAsync(ProductEditVM model);
     public Task<bool> UpdateAsync(ProductEditVM model);
+    public Task<bool> DeleteAsync(string id);
     public Task<List<SelectListItem>> GetBrandListAsync();
     public Task<List<SelectListItem>> GetCategoryListAsync();
 }

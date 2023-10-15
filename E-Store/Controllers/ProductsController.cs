@@ -75,7 +75,7 @@ public class ProductsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(ProductEditVM model)
     {
-        if(!ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
             model = await FillModel(model);
             return View(model);
@@ -86,12 +86,21 @@ public class ProductsController : Controller
         if (!success)
             return StatusCode(StatusCodes.Status500InternalServerError);
 
-        return RedirectToAction(nameof(Details), new { id = model.Id});
+        return RedirectToAction(nameof(Details), new { id = model.Id });
     }
 
     [HttpPost]
-    public IActionResult Delete(string id)
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(string id)
     {
+        if (string.IsNullOrWhiteSpace(id))
+            return BadRequest();
+
+        var success = await _productRepo.DeleteAsync(id);
+
+        if (!success)
+            return StatusCode(StatusCodes.Status500InternalServerError);
+
         return RedirectToAction(nameof(Index));
     }
 

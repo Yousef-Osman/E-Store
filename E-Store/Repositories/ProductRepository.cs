@@ -80,7 +80,7 @@ public class ProductRepository : IProductRepository
     public async Task<bool> UpdateAsync(ProductEditVM model)
     {
         var product = await _context.Products
-            //.Include(a => a.Categories)
+            .Include(a => a.Categories)
             .FirstOrDefaultAsync(a => a.Id == model.Id);
 
         if (product == null)
@@ -94,7 +94,25 @@ public class ProductRepository : IProductRepository
         product.Stock = model.Stock;
         product.Price = model.Price;
         product.BrandId = model.SelectedBrand;
+        product.Categories = model.SelectedCategories.Select(a => new ProductCategory { CategoryId = a }).ToList();
         product.LastModified = DateTime.Now;
+
+        _context.Update(product);
+        return await _context.SaveChangesAsync() > 0;
+    }
+
+    public async Task<bool> DeleteAsync(string id)
+    {
+        var product = await _context.Products
+            .FirstOrDefaultAsync(a => a.Id == id);
+
+        if (product == null)
+            return false;
+
+        product.IsDeleted = true;
+        product.Deleted = DateTime.Now;
+
+        //File.Delete($"{_environment.WebRootPath}/{product.ImageUrl}");
 
         _context.Update(product);
         return await _context.SaveChangesAsync() > 0;

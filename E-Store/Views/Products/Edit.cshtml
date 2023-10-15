@@ -5,10 +5,11 @@
 }
 
 <section>
-    <h4 class="mt-5 text-dim"><strong>Edit Product</strong></h4>
+    <h4 class="mt-4 text-dim"><strong>Edit Product</strong></h4>
     <div class="row py-3">
         <div class="col-md-6">
             <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                @*<input asp-for="Id" class="form-control" hidden>*@
                 <div class="mb-3">
                     <label asp-for="Name" class="form-label"></label>
                     <input asp-for="Name" class="form-control" placeholder="Name">
@@ -56,7 +57,8 @@
                     <small class="form-text text-muted">Only @FileSettings.AllowedExtensions files are allowed with max size @FileSettings.MaxFileSizeInMB MB.</small>
                     <span asp-validation-for="ImageFile" class="text-danger d-block"></span>
                 </div>
-                <button type="submit" class="btn btn-success px-5 mt-2">Save</button>
+                <button type="submit" class="btn btn-success mt-2" style="width:110px;">Save</button>
+                <a type="button" asp-action="Index" class="btn btn-outline-secondary mt-2" style="width:110px;">Cancel</a>
             </form>
         </div>
         <div class="col-md-6" style="margin-top:2rem!important;">

@@ -5,7 +5,7 @@
 }
 
 <section>
-    <h4 class="mt-5 text-dim"><strong>Add New Product</strong></h4>
+    <h4 class="mt-4 text-dim"><strong>Add New Product</strong></h4>
     <div class="row py-3">
         <div class="col-md-6">
             <form asp-action="Create" enctype="multipart/form-data" method="post">
@@ -56,11 +56,12 @@
                     <small class="form-text text-muted">Only @FileSettings.AllowedExtensions files are allowed with max size @FileSettings.MaxFileSizeInMB MB.</small>
                     <span asp-validation-for="ImageFile" class="text-danger d-block"></span>
                 </div>
-                <button type="submit" class="btn btn-success px-5 mt-2">Save</button>
+                <button type="submit" class="btn btn-success mt-2" style="width:110px;">Save</button>
+                <a type="button" asp-action="Index" class="btn btn-outline-secondary mt-2" style="width:110px;">Cancel</a>
             </form>
         </div>
         <div class="col-md-6" style="margin-top:2rem!important;">
-            <img id="product-image" class="col-11 rounded-3 float-end d-none" alt="Product Image" />
+            <img id="product-image" src="~/images/site/image_placeholder.jpg" class="col-11 rounded-3 border border-4 float-end" style="max-height:615px;" alt="Product Image" />
         </div>
     </div>
 </section>
@@ -77,7 +78,7 @@
             document.getElementById('ImageFile').onchange = function () {
                 var image = document.getElementById('product-image');
                 image.setAttribute('src', window.URL.createObjectURL(this.files[0]));
-                image.classList.remove('d-none');
+                image.classList.remove('border');
             }
         });
     </script>
