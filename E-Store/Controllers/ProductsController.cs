@@ -51,6 +51,13 @@ public class ProductsController : Controller
             return View(model);
         }
 
+        if (model.ImageFile == null)
+        {
+            model = await FillModel(model);
+            ModelState.AddModelError("ImageFile", "The Image field is required.");
+            return View(model);
+        }
+
         var success = await _productRepo.CreateAsync(model);
 
         if (!success)

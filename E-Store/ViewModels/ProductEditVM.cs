@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace E_Store.ViewModels;
 
+//This model works for both create and Update
 public class ProductEditVM: ProductVM
 {
-    [Required, Display(Name = "Image")]
+    [Display(Name = "Image")] //removed [Required] to allow it to work in update
     [AllowedExtensions(FileSettings.AllowedExtensions)]
     [MaxFileSize(FileSettings.MaxFileSizeInBytes)]
     public IFormFile ImageFile { get; set; }

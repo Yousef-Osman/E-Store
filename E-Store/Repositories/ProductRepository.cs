@@ -29,7 +29,7 @@ public class ProductRepository : IProductRepository
         return await _context.Products
             .Include(a => a.Brand)
             .Include(a => a.Categories)
-            .ThenInclude(b=>b.Category)
+            .ThenInclude(b => b.Category)
             .AsNoTracking()
             .ToListAsync();
     }
@@ -62,7 +62,8 @@ public class ProductRepository : IProductRepository
     {
         var fileName = await SaveFile(model.ImageFile);
 
-        var product = new Product {
+        var product = new Product
+        {
             Name = model.Name,
             Description = model.Description,
             Stock = model.Stock,
@@ -70,7 +71,7 @@ public class ProductRepository : IProductRepository
             ImageUrl = $"{FileSettings.ImagesPath}{fileName}",
             VendorId = GetCurrentUserId(),
             BrandId = model.SelectedBrand,
-            Categories = model.SelectedCategories.Select(a=> new ProductCategory { CategoryId = a }).ToList(),
+            Categories = model.SelectedCategories.Select(a => new ProductCategory { CategoryId = a }).ToList(),
         };
 
         _context.Add(product);
@@ -86,8 +87,11 @@ public class ProductRepository : IProductRepository
         if (product == null)
             return false;
 
-        var fileName = product.ImageUrl.Replace(FileSettings.ImagesPath, "");
-        await SaveFile(model.ImageFile, fileName);
+        if (model.ImageFile != null)
+        {
+            var fileName = product.ImageUrl.Replace(FileSettings.ImagesPath, "");
+            await SaveFile(model.ImageFile, fileName);
+        }
 
         product.Name = model.Name;
         product.Description = model.Description;
