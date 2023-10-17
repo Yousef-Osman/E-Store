@@ -37,24 +37,17 @@ public class ProductsController : Controller
 
     public async Task<IActionResult> Create()
     {
-        var model = await FillModel(new ProductEditVM());
+        var model = await FillModel(new ProductAddVM());
         return View(model);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(ProductEditVM model)
+    public async Task<IActionResult> Create(ProductAddVM model)
     {
         if (!ModelState.IsValid)
         {
             model = await FillModel(model);
-            return View(model);
-        }
-
-        if (model.ImageFile == null)
-        {
-            model = await FillModel(model);
-            ModelState.AddModelError("ImageFile", "The Image field is required.");
             return View(model);
         }
 
@@ -111,10 +104,10 @@ public class ProductsController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    private async Task<ProductEditVM> FillModel(ProductEditVM model)
+    private async Task<G> FillModel<G>(G model) where G : IProductLists
     {
         model.Brands = await _productRepo.GetBrandListAsync();
         model.Categories = await _productRepo.GetCategoryListAsync();
-        return model; //return is unnecessary because it's a reference type
+        return model;
     }
 }

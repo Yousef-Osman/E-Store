@@ -58,7 +58,7 @@ public class ProductRepository : IProductRepository
             .FirstOrDefaultAsync(a => a.Id == id);
     }
 
-    public async Task<bool> CreateAsync(ProductEditVM model)
+    public async Task<bool> CreateAsync(ProductAddVM model)
     {
         var fileName = await SaveFile(model.ImageFile);
 
