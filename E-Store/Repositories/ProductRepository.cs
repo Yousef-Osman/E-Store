@@ -113,12 +113,21 @@ public class ProductRepository : IProductRepository
         if (product == null)
             return false;
 
-        product.IsDeleted = true;
-        product.Deleted = DateTime.Now;
+        var isUsed = await _context.OrdersDetails.AnyAsync(a => a.ProductId == id) ||
+                     await _context.CartItems.AnyAsync(a => a.ProductId == id);
 
-        //File.Delete($"{_environment.WebRootPath}/{product.ImageUrl}");
+        if (isUsed)
+        {
+            product.IsDeleted = true;
+            product.Deleted = DateTime.Now;
+            _context.Update(product); //soft delete
+        }
+        else
+        {
+            File.Delete($"{_environment.WebRootPath}/{product.ImageUrl}");
+            _context.Remove(product); //hard delete
+        }
 
-        _context.Update(product);
         return await _context.SaveChangesAsync() > 0;
     }
 
