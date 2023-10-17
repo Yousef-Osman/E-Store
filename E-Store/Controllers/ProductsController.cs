@@ -17,12 +17,39 @@ public class ProductsController : Controller
         _mapper = mapper;
     }
 
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
-        var products = await _productRepo.GetVendorProductsAsync();
-        var model = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductVM>>(products);
+        return View();
+    }
 
-        return View(model);
+    public async Task<IActionResult> GetData([FromForm] int start, [FromForm] int length = 10)
+    {
+        try
+        {
+            var searchValue = Request.Form["search[value]"].ToString().ToLower();
+            var columnOrder = Request.Form["order[0][column]"];
+            var sortColumn = Request.Form[string.Concat("columns[", columnOrder, "][name]")];
+            var sortColumnDirection = Request.Form["order[0][dir]"];
+
+            var products = await _productRepo.GetProductsAsync();
+            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductVM>>(products);
+
+
+            //var query = _surveyRepo.GetDataQuery();
+            //var data = await query.Skip(start).Take(length).ToListAsync();
+            var totalCount = 24;
+
+            return Json(new
+            {
+                data = data.Take(10),
+                recordsFiltered = totalCount,
+                recordsTotal = totalCount
+            });
+        }
+        catch (Exception)
+        {
+            return StatusCode(500);
+        }
     }
 
     public async Task<IActionResult> Details(string id)
