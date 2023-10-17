@@ -62,7 +62,7 @@
                                 }
                         </h6>
                         <div class="mt-auto">
-                            <a asp-controller="Products" asp-action="details" asp-route-id="@product.Id" class="btn btn-outline-success px-4">Details</a>
+                            <a asp-action="ProductDetails" asp-route-id="@product.Id" class="btn btn-outline-success px-4">Details</a>
                             <a asp-controller="ShoppingCart" asp-action="AddItemToCart" asp-route-id="@product.Id"
                                asp-route-returnUrl="@Context.Request.Path" class="btn btn-warning" style="color: #444;"> Add to cart</a>
                         </div>

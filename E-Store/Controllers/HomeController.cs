@@ -32,6 +32,16 @@ public class HomeController : Controller
         return View(model);
     }
 
+    public async Task<IActionResult> ProductDetails(string id)
+    {
+        if (string.IsNullOrWhiteSpace(id))
+            return BadRequest();
+
+        var product = await _productRepo.GetProductAsync(id);
+        var model = _mapper.Map<Product, ProductVM>(product);
+        return View(model);
+    }
+
     public IActionResult Privacy()
     {
         return View();
