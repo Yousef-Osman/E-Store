@@ -82,16 +82,16 @@
                         return `<img src="${row.imageUrl}" class="img-fluid product-image" alt="Product Image">`;
                     }
                 },
-                { data: 'name', orderable: true },
+                { data: 'name', orderable: false },
                 {
-                    data: 'price', orderable: true, render: function (data, type, row) {
+                    data: 'price', orderable: false, render: function (data, type, row) {
                         return `${row.price} EGP`;
                     }
                 },
-                { data: 'stock', orderable: true },
-                { data: 'categoryNames', orderable: true },
+                { data: 'stock', orderable: false },
+                { data: 'categoryNames', orderable: false },
                 {
-                    data: '', orderable: true, render: function (data, type, row) {
+                    data: '', orderable: false, render: function (data, type, row) {
                         let categories = '';
                         row.categoryNames.forEach((category) => {
                             categories += `<span class="badge bg-secondary me-1">${category} </span>`;
@@ -115,11 +115,9 @@
             //delete modal logic
             const deleteRoleModal = new bootstrap.Modal(document.getElementById('delete-modal'));
 
-            document.querySelectorAll('.delete-btn').forEach(button => {
-                button.addEventListener('click', function (e) {
-                    document.getElementById('product-id').value = this.value;
-                    deleteRoleModal.show();
-                });
+            dataTable.on('click', 'tbody .delete-btn', function (e) {
+                document.getElementById('product-id').value = this.value;
+                deleteRoleModal.show();
             });
         });
     </script>
