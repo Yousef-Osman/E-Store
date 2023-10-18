@@ -18,7 +18,8 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    color: #6c757d;
 }
 
 .footer {
@@ -36,3 +37,4 @@ body {
 .text-dim {
     color: #54595e;
 }
+

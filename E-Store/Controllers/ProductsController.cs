@@ -3,6 +3,7 @@ using E_Store.Models.Entities;
 using E_Store.Repositories.interfaces;
 using E_Store.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_Store.Controllers;
 public class ProductsController : Controller
@@ -31,17 +32,15 @@ public class ProductsController : Controller
             var sortColumn = Request.Form[string.Concat("columns[", columnOrder, "][name]")];
             var sortColumnDirection = Request.Form["order[0][dir]"];
 
-            var products = await _productRepo.GetProductsAsync();
-            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductVM>>(products);
+            var query = _productRepo.GetDataQuery();
+            var data = await query.Skip(start).Take(length).ToListAsync();
+            var totalCount = query.Count();
 
-
-            //var query = _surveyRepo.GetDataQuery();
-            //var data = await query.Skip(start).Take(length).ToListAsync();
-            var totalCount = 24;
+            var model = _mapper.Map<List<Product>, List<ProductVM>>(data);
 
             return Json(new
             {
-                data = data.Take(10),
+                data = model,
                 recordsFiltered = totalCount,
                 recordsTotal = totalCount
             });

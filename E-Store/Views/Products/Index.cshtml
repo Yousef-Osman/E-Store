@@ -5,45 +5,35 @@
 }
 
 <link href="~/lib/datatables/datatables.min.css" rel="stylesheet" />
-<link href="~/lib/datatables/datatables-1.13.6/css/datatables.bootstrap5.min.css" rel="stylesheet" />
+
+<style>
+    .product-image {
+        width: 120px;
+        height: 70px;
+        padding: 5px;
+        object-fit: contain;
+    }
+
+    #tableData td, th {
+        vertical-align: middle;
+        color: #6c757d;
+    }
+
+    .custome-table-striped > tbody > tr:nth-child(odd) > td, 
+    .custome-table-striped > tbody > tr:nth-child(odd) > th {
+        background-color: #f1f3fa;
+    }
+</style>
+
+
 
 <div class="my-4">
     <div class="mb-3 d-flex justify-content-between">
         <h4 class="text-uppercase text-dim"><strong>Products</strong></h4>
         <a asp-action="Create" class="btn btn-outline-success px-4">Create</a>
     </div>
-    @*@foreach (var product in Model)
-    {
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="col-lg-2 col-md-3 p-3">
-                    <img src="~/@product.ImageUrl" class="img-fluid" alt="...">
-                </div>
-                <div class="col-lg-10 col-md-9">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">@product.Name</h5>
-                        <p class="card-text">@product.Description</p>
-                        <h6 class="text-secondary">Price: <strong>@product.Price.ToString("n")</strong> EGP</h6>
-                        <h6 class="text-secondary">Brand: <strong>@product.BrandName</strong></h6>
-                        <h6 class="text-secondary">
-                            Categories:
-                            @foreach (var category in @product.CategoryNames)
-                            {
-                                <span class="badge bg-secondary" style="margin-bottom:2px;">@category</span>
-                            }
-                        </h6>
-                        <div class="mt-auto ms-md-auto">
-                            <a asp-action="Details" class="btn btn-success" asp-route-id="@product.Id"><i class="fa-solid fa-eye"></i></a>
-                            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@product.Id"><i class="fa-solid fa-pen-to-square text-light"></i></a>
-                            <button value="@product.Id" class="btn btn-danger delete-btn"><i class="fa fa-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }*@
-
-    <table id="tableData" class="table table-striped" style="width:100%">
+    <hr />
+    <table id="tableData" class="table custome-table-striped table-borderless" style="width:100%">
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.ImageUrl)</th>
@@ -87,11 +77,28 @@
             let selector = '#tableData';
             let url = '/Products/GetData';
             let columns = [
-                { data: 'imageUrl', orderable: false },
-                { data: 'name', orderable: false },
-                { data: 'price', orderable: false },
-                { data: 'stock', orderable: false },
-                { data: 'brandName', orderable: false },
+                {
+                    data: 'imageUrl', orderable: false, render: function (data, type, row) {
+                        return `<img src="${row.imageUrl}" class="img-fluid product-image" alt="Product Image">`;
+                    }
+                },
+                { data: 'name', orderable: true },
+                {
+                    data: 'price', orderable: true, render: function (data, type, row) {
+                        return `${row.price} EGP`;
+                    }
+                },
+                { data: 'stock', orderable: true },
+                { data: 'categoryNames', orderable: true },
+                {
+                    data: '', orderable: true, render: function (data, type, row) {
+                        let categories = '';
+                        row.categoryNames.forEach((category) => {
+                            categories += `<span class="badge bg-secondary me-1">${category} </span>`;
+                        });
+                        return categories;
+                    }
+                },
                 {
                     data: '', orderable: false, render: function (data, type, row) {
                         var buttons = `<a class="btn btn-success me-1"  href="/Products/Details/${row.id}"><i class="fas fa-eye"></i></a>`;

@@ -6,6 +6,7 @@ namespace E_Store.Repositories.interfaces;
 
 public interface IProductRepository
 {
+    public IQueryable<Product> GetDataQuery();
     public Task<IReadOnlyList<Product>> GetProductsAsync();
     public Task<IReadOnlyList<Product>> GetVendorProductsAsync();
     public Task<Product> GetProductAsync(string id);

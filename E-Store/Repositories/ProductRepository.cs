@@ -24,6 +24,15 @@ public class ProductRepository : IProductRepository
         _httpContext = httpContext;
     }
 
+    public IQueryable<Product> GetDataQuery()
+    {
+        return _context.Products
+            .Include(a => a.Brand)
+            .Include(a => a.Categories)
+            .ThenInclude(b => b.Category)
+            .AsNoTracking();
+    }
+
     public async Task<IReadOnlyList<Product>> GetProductsAsync()
     {
         return await _context.Products
