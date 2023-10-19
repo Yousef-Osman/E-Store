@@ -23,7 +23,7 @@
                     <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a></li>
                     @if (User.IsInRole(UserRoles.SuperAdmin.ToString()))
                     {
-                        <li><a class="dropdown-item" asp-controller="Home" asp-action="Index">Manage Users</a></li>
+                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index">Admin Dashboard</a></li>
                     }
                 </ul>
             </div>
