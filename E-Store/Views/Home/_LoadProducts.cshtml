@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ProductVM>
+
+@foreach (var product in Model)
+{
+    <div class="col">
+        <div class="card h-100">
+            <img src="~/@product.ImageUrl" class="card-img-top p-3" alt="..." />
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">@product.Name</h5>
+                <p class="card-text">@product.Description</p>
+                <h6 class="text-secondary">Price: <span class="text-success h4">@product.Price.ToString("n")</span> EGP</h6>
+                <h6 class="text-secondary">Brand: <strong>@product.BrandName</strong></h6>
+                <h6 class="text-secondary mb-3">
+                    Categories:
+                    @foreach (var category in @product.CategoryNames)
+                    {
+                        <span class="badge bg-secondary" style="margin-bottom:2px;">@category</span>
+                    }
+                </h6>
+                <div class="mt-auto">
+                    <a asp-action="ProductDetails" asp-route-id="@product.Id" class="btn btn-outline-success px-4">Details</a>
+                    <a asp-controller="ShoppingCart" asp-action="AddItemToCart" asp-route-id="@product.Id"
+                       asp-route-returnUrl="@Context.Request.Path" class="btn btn-warning" style="color: #444;"> Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

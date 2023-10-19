@@ -14,6 +14,7 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IProductRepository _productRepo;
     private readonly IMapper _mapper;
+    private readonly int _pageSize = 12;
 
     public HomeController(ILogger<HomeController> logger,
                           IProductRepository productRepo,
@@ -26,10 +27,36 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var products = await _productRepo.GetProductsAsync();
-        var model = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductVM>>(products);
+        var query = _productRepo.GetDataQuery();
+        var data = await query
+            .Take(_pageSize)
+            .ToListAsync();
+        var model = _mapper.Map<List<Product>, List<ProductVM>>(data);
 
         return View(model);
+    }
+
+    public async Task<IActionResult> LoadProducts(int pageNumber)
+    {
+        try
+        {
+            var query = _productRepo.GetDataQuery();
+            var data = await query
+                .Skip((pageNumber - 1) * _pageSize)
+                .Take(_pageSize)
+                .ToListAsync();
+
+            if (data.Count < 1)
+                return StatusCode(StatusCodes.Status204NoContent);
+
+            var model = _mapper.Map<List<Product>, List<ProductVM>>(data);
+
+            return PartialView("_LoadProducts", model);
+        }
+        catch (Exception)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
     }
 
     public async Task<IActionResult> ProductDetails(string id)
