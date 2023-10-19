@@ -1,0 +1,62 @@
+﻿@using E_Store.Models.Enums;
+@model IEnumerable<Order>
+
+@foreach (var order in Model)
+{
+    <div class="card p-4 my-4 shadow-sm">
+        <h5 class="mb-4 text-dim">Ordered at: @order.Created</h5>
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="border-0 bg-light">
+                            <div class="py-1">@Html.DisplayNameFor(model => model.OrderDetails)</div>
+                        </th>
+                        <th scope="col" class="border-0 bg-light">
+                            <div class="py-1">@Html.DisplayNameFor(model => model.TotalPrice)</div>
+                        </th>
+                        <th scope="col" class="border-0 bg-light">
+                            <div class="py-1">@Html.DisplayNameFor(model => model.Status)</div>
+                        </th>
+                        <th scope="col" class="border-0 bg-light">
+                            <div class="py-1 text-center">Actions</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-0 align-middle">
+                            <div class="row mb-2">
+                                <div class="col-7"><strong>Product Name</strong></div>
+                                <div class="col-3"><strong>Unit Price</strong></div>
+                                <div class="col-2"><strong>Quantity</strong></div>
+                            </div>
+                            @foreach (var item in order.OrderDetails)
+                            {
+                                <div class="row">
+                                    <div class="col-7">@item.ProductName</div>
+                                    <div class="col-3">@item.Price.ToString("n") EGP</div>
+                                    <div class="col-2">@item.Quantity</div>
+                                </div>
+                            }
+                        </td>
+                        <td class="border-0 align-middle"><strong>@order.TotalPrice.ToString("n") EGP</strong></td>
+                        <td class="border-0 align-middle"><strong>@order.Status</strong></td>
+                        <td class="border-0 align-middle text-center" width="130px">
+                            @if (order.Status == OrderStatus.Pending.ToString())
+                            {
+                                <button value="@order.Id" class="btn btn-outline-danger btn-sm col-12 mb-2 delete-btn"><i class="fa fa-trash"></i> Delete</button>
+                                <a asp-action="Payment" asp-route-id="@order.Id" class="btn btn-primary btn-sm col-12"><i class="fas fa-shopping-cart"></i> Checkout</a>
+                            }
+                            else
+                            {
+                                <button class="btn btn-outline-danger btn-sm col-12 mb-2" disabled><i class="fa fa-trash"></i> Delete</button>
+                                <button class="btn btn-primary btn-sm col-12" disabled><i class="fas fa-shopping-cart"></i> Checkout</button>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

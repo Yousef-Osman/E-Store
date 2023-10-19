@@ -4,6 +4,7 @@ using E_Store.Repositories.interfaces;
 using E_Store.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Stripe.Checkout;
 using System.Security.Claims;
@@ -15,6 +16,7 @@ public class OrdersController : Controller
 {
     private readonly ShoppingCart _shoppingCart;
     private readonly IOrderRepository _orderRepo;
+    private readonly int _pageSize = 12;
 
     public OrdersController(ShoppingCart shoppingCart,
                             IOrderRepository orderRepo)
@@ -23,11 +25,31 @@ public class OrdersController : Controller
         _orderRepo = orderRepo;
     }
 
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        var orders = await _orderRepo.GetOrdersWithDetailsAsync(userId);
-        return View(orders);
+        return View();
+    }
+
+    public async Task<IActionResult> LoadOrders(int pageNumber)
+    {
+        try
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var query = _orderRepo.GetDataQuery(userId);
+            var data = await query
+                .Skip((pageNumber - 1) * _pageSize)
+                .Take(_pageSize)
+                .ToListAsync();
+
+            if (data.Count < 1)
+                return StatusCode(StatusCodes.Status204NoContent);
+
+            return PartialView("_LoadOrders", data);
+        }
+        catch (Exception)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
     }
 
     public async Task<IActionResult> Checkout()

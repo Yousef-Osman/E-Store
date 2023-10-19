@@ -16,26 +16,38 @@ public class OrderRepository : IOrderRepository
         _context = context;
     }
 
+    public IQueryable<Order> GetDataQuery(string UserId)
+    {
+        return _context.Orders
+            .Where(a => a.UserId == UserId)
+            .Include(a => a.OrderDetails)
+            .OrderByDescending(a => a.Created)
+            .AsNoTracking();
+    }
+
     public async Task<Order> GetOrderAsync(string id)
     {
-        return await _context.Orders.Where(a => a.Id == id).FirstOrDefaultAsync();
+        return await _context.Orders
+            .Where(a => a.Id == id)
+            .AsNoTracking()
+            .FirstOrDefaultAsync();
     }
 
     public async Task<Order> GetOrderWithDetailsAsync(string id)
     {
-        return await _context.Orders.Where(a => a.Id == id)
-            .Include(a => a.OrderDetails).FirstOrDefaultAsync();
+        return await _context.Orders
+            .Where(a => a.Id == id)
+            .Include(a => a.OrderDetails)
+            .AsNoTracking()
+            .FirstOrDefaultAsync();
     }
 
     public async Task<List<OrderDetail>> GetOrderDetailsAsync(string id)
     {
-        return await _context.OrdersDetails.Where(a => a.OrderId == id).ToListAsync();
-    }
-
-    public async Task<List<Order>> GetOrdersWithDetailsAsync(string UserId)
-    {
-        return await _context.Orders.Where(a => a.UserId == UserId)
-            .Include(a => a.OrderDetails).OrderByDescending(a => a.Created).ToListAsync();
+        return await _context.OrdersDetails
+            .Where(a => a.OrderId == id)
+            .AsNoTracking()
+            .ToListAsync();
     }
 
     public async Task<string> AddOrderAsync(OrderVM orderVM, string userId)

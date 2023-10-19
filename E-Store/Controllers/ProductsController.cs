@@ -2,10 +2,14 @@
 using E_Store.Models.Entities;
 using E_Store.Repositories.interfaces;
 using E_Store.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace E_Store.Controllers;
+
+[Authorize]
 public class ProductsController : Controller
 {
     private readonly IProductRepository _productRepo;
@@ -32,7 +36,8 @@ public class ProductsController : Controller
             var sortColumn = Request.Form[string.Concat("columns[", columnOrder, "][name]")];
             var sortColumnDirection = Request.Form["order[0][dir]"];
 
-            var query = _productRepo.GetDataQuery();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var query = _productRepo.GetDataQuery(userId);
             var data = await query.Skip(start).Take(length).ToListAsync();
             var totalCount = query.Count();
 
@@ -77,7 +82,8 @@ public class ProductsController : Controller
             return View(model);
         }
 
-        var success = await _productRepo.CreateAsync(model);
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var success = await _productRepo.CreateAsync(model, userId);
 
         if (!success)
             return StatusCode(StatusCodes.Status500InternalServerError);

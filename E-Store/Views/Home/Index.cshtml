@@ -12,7 +12,7 @@
 </div>
 
 <div class="my-5">
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4" id="products-container">
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4" id="data-container">
     </div>
     <div class="text-center mt-4">
         <button id="load-more" class="btn btn-outline-secondary" hidden>Load More</button>
@@ -48,7 +48,7 @@
                     return response.text();
                 }).then(data => {
                     if (data !== null) {
-                        document.getElementById('products-container').innerHTML += data;
+                        document.getElementById('data-container').innerHTML += data;
                         if (pageNumber == 1)
                             addMoreBtn.hidden = false;
 

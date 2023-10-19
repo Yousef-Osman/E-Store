@@ -5,6 +5,7 @@ using E_Store.Repositories.interfaces;
 using E_Store.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 
 namespace E_Store.Repositories;
@@ -24,37 +25,14 @@ public class ProductRepository : IProductRepository
         _httpContext = httpContext;
     }
 
-    public IQueryable<Product> GetDataQuery()
+    public IQueryable<Product> GetDataQuery([Optional] string userId)
     {
         return _context.Products
+            .Where(a=> string.IsNullOrEmpty(userId) ? true : a.VendorId == userId)
             .Include(a => a.Brand)
             .Include(a => a.Categories)
             .ThenInclude(b => b.Category)
             .AsNoTracking();
-    }
-
-    public async Task<IReadOnlyList<Product>> GetProductsAsync()
-    {
-        return await _context.Products
-            .Include(a => a.Brand)
-            .Include(a => a.Categories)
-            .ThenInclude(b => b.Category)
-            .AsNoTracking()
-            .ToListAsync();
-    }
-
-    public async Task<IReadOnlyList<Product>> GetVendorProductsAsync()
-    {
-        var vendorId = GetCurrentUserId();
-
-        return await _context.Products
-            .Where(a => a.VendorId == vendorId)
-            .Include(a => a.Brand)
-            .Include(a => a.Categories)
-            .ThenInclude(b => b.Category)
-            .OrderByDescending(a => a.Created)
-            .AsNoTracking()
-            .ToListAsync();
     }
 
     public async Task<Product> GetProductAsync(string id)
@@ -67,7 +45,7 @@ public class ProductRepository : IProductRepository
             .FirstOrDefaultAsync(a => a.Id == id);
     }
 
-    public async Task<bool> CreateAsync(ProductAddVM model)
+    public async Task<bool> CreateAsync(ProductAddVM model, string userId)
     {
         var fileName = await SaveFile(model.ImageFile);
 
@@ -78,7 +56,7 @@ public class ProductRepository : IProductRepository
             Stock = model.Stock,
             Price = model.Price,
             ImageUrl = $"{FileSettings.ImagesPath}{fileName}",
-            VendorId = GetCurrentUserId(),
+            VendorId = userId,
             BrandId = model.SelectedBrand,
             Categories = model.SelectedCategories.Select(a => new ProductCategory { CategoryId = a }).ToList(),
         };
@@ -168,10 +146,5 @@ public class ProductRepository : IProductRepository
         await file.CopyToAsync(stream);
 
         return fileName;
-    }
-
-    private string GetCurrentUserId()
-    {
-        return _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }
