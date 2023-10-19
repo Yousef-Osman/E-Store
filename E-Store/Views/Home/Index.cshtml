@@ -13,35 +13,9 @@
 
 <div class="my-5">
     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4" id="products-container">
-        @foreach (var product in Model)
-        {
-            <div class="col">
-                <div class="card h-100">
-                    <img src="~/@product.ImageUrl" class="card-img-top p-3" alt="..." />
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">@product.Name</h5>
-                        <p class="card-text">@product.Description</p>
-                        <h6 class="text-secondary">Price: <span class="text-success h4">@product.Price.ToString("n")</span> EGP</h6>
-                        <h6 class="text-secondary">Brand: <strong>@product.BrandName</strong></h6>
-                        <h6 class="text-secondary mb-3">
-                            Categories:
-                            @foreach (var category in @product.CategoryNames)
-                            {
-                                <span class="badge bg-secondary" style="margin-bottom:2px;">@category</span>
-                            }
-                        </h6>
-                        <div class="mt-auto">
-                            <a asp-action="ProductDetails" asp-route-id="@product.Id" class="btn btn-outline-success px-4">Details</a>
-                            <a asp-controller="ShoppingCart" asp-action="AddItemToCart" asp-route-id="@product.Id"
-                               asp-route-returnUrl="@Context.Request.Path" class="btn btn-warning" style="color: #444;"> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
     </div>
     <div class="text-center mt-4">
-        <button class="btn btn-outline-secondary" id="load-more">Load More</button>
+        <button id="load-more" class="btn btn-outline-secondary" hidden>Load More</button>
         <p id="no-more-data" hidden>There is no more data to load</p>
         <div class="loader-container"></div>
     </div>
@@ -50,12 +24,15 @@
 @section scripts {
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
-            let pageNumber = 2;
+            let pageNumber = 1;
             const addMoreBtn = document.getElementById('load-more');
             const noMoreData = document.getElementById('no-more-data');
             const loadingSpinner = document.querySelector('.loader-container');
 
-            addMoreBtn.onclick = function () {
+            loadData();
+            addMoreBtn.onclick = function () { loadData() };
+
+            function loadData() {
                 loadingSpinner.classList.add('loader');
                 fetch(`/Home/LoadProducts?pageNumber=${pageNumber}`, {
                     headers: { 'Content-Type': 'application/json' },
@@ -72,6 +49,9 @@
                 }).then(data => {
                     if (data !== null) {
                         document.getElementById('products-container').innerHTML += data;
+                        if (pageNumber == 1)
+                            addMoreBtn.hidden = false;
+
                         pageNumber++;
                     }
                     loadingSpinner.classList.remove('loader');

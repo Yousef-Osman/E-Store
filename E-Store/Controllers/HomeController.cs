@@ -25,15 +25,9 @@ public class HomeController : Controller
         _mapper = mapper;
     }
 
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
-        var query = _productRepo.GetDataQuery();
-        var data = await query
-            .Take(_pageSize)
-            .ToListAsync();
-        var model = _mapper.Map<List<Product>, List<ProductVM>>(data);
-
-        return View(model);
+        return View();
     }
 
     public async Task<IActionResult> LoadProducts(int pageNumber)
