@@ -4,6 +4,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+<link href="~/css/loadingspinner.css" rel="stylesheet" />
+
 <div class="my-5">
     <h1 class="display-4">Welcome to E-Store</h1>
     <p class="lead text-dimgrey"><strong>This Is an E-Commerce App, that was built using ASP.NET Core MVC.</strong></p>
@@ -41,6 +43,7 @@
     <div class="text-center mt-4">
         <button class="btn btn-outline-secondary" id="load-more">Load More</button>
         <p id="no-more-data" hidden>There is no more data to load</p>
+        <div class="loader-container"></div>
     </div>
 </div>
 
@@ -50,8 +53,10 @@
             let pageNumber = 2;
             const addMoreBtn = document.getElementById('load-more');
             const noMoreData = document.getElementById('no-more-data');
+            const loadingSpinner = document.querySelector('.loader-container');
 
             addMoreBtn.onclick = function () {
+                loadingSpinner.classList.add('loader');
                 fetch(`/Home/LoadProducts?pageNumber=${pageNumber}`, {
                     headers: { 'Content-Type': 'application/json' },
                     method: 'Get',
@@ -69,7 +74,9 @@
                         document.getElementById('products-container').innerHTML += data;
                         pageNumber++;
                     }
+                    loadingSpinner.classList.remove('loader');
                 }).catch(error => {
+                    loadingSpinner.classList.remove('loader');
                     alert(error);
                 });
             };
