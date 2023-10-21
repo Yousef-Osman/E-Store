@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ProductVM>
+
+@{
+    ViewData["Title"] = "Shop";
+}
+
+<link href="~/css/loadingspinner.css" rel="stylesheet" />
+
+<section>
+    <div class="my-5">
+        <h1 class="display-4">Welcome to E-Store</h1>
+        <p class="lead text-dimgrey"><strong>This Is an E-Commerce App, that was built using ASP.NET Core MVC.</strong></p>
+    </div>
+
+    <div class="my-5">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3" id="data-container">
+        </div>
+        <div class="text-center mt-4">
+            <button id="load-more" class="btn btn-outline-secondary" hidden>Load More</button>
+            <p id="no-more-data" hidden>There is no more data to load</p>
+            <div class="loader-container"></div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            let pageNumber = 1;
+            const addMoreBtn = document.getElementById('load-more');
+            const noMoreData = document.getElementById('no-more-data');
+            const loadingSpinner = document.querySelector('.loader-container');
+
+            loadData();
+            addMoreBtn.onclick = function () { loadData() };
+
+            function loadData() {
+                loadingSpinner.classList.add('loader');
+                fetch(`/Home/LoadProducts?pageNumber=${pageNumber}`, {
+                    headers: { 'Content-Type': 'application/json' },
+                    method: 'Get',
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.status);
+                    } else if (response.status == 204) {
+                        addMoreBtn.hidden = true;
+                        noMoreData.hidden = false;
+                        return null;
+                    }
+                    return response.text();
+                }).then(data => {
+                    if (data !== null) {
+                        document.getElementById('data-container').innerHTML += data;
+                        if (pageNumber == 1)
+                            addMoreBtn.hidden = false;
+
+                        pageNumber++;
+                    }
+                    loadingSpinner.classList.remove('loader');
+                }).catch(error => {
+                    loadingSpinner.classList.remove('loader');
+                    alert(error);
+                });
+            };
+        });
+    </script>
+}
