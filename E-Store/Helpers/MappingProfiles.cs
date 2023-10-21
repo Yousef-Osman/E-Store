@@ -21,5 +21,6 @@ public class MappingProfiles: Profile
             .ForMember(des => des.Brands, options => options.Ignore());
 
         CreateMap<Category, CategoryVM>();
+        CreateMap<Brand, BrandVM>();
     }
 }

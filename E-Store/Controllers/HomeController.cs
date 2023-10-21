@@ -7,7 +7,6 @@ using E_Store.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace E_Store.Controllers;
 public class HomeController : Controller
@@ -15,17 +14,20 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IProductRepository _productRepo;
     private readonly ICategoryRepository _categoryRepo;
+    private readonly IBrandRepository _brandRepo;
     private readonly IMapper _mapper;
     private readonly int _pageSize = 12;
 
     public HomeController(ILogger<HomeController> logger,
                           IProductRepository productRepo,
                           ICategoryRepository categoryRepo,
+                          IBrandRepository brandRepo,
                           IMapper mapper)
     {
         _logger = logger;
         _productRepo = productRepo;
         _categoryRepo = categoryRepo;
+        _brandRepo = brandRepo;
         _mapper = mapper;
     }
 
@@ -39,7 +41,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public async Task<IActionResult> LoadProducts(int pageNumber)
+    public async Task<IActionResult> LoadProducts(int pageNumber = 1)
     {
         try
         {
@@ -62,7 +64,7 @@ public class HomeController : Controller
         }
     }
 
-    public async Task<IActionResult> LoadCategories(int pageNumber)
+    public async Task<IActionResult> LoadCategories()
     {
         try
         {
@@ -70,6 +72,21 @@ public class HomeController : Controller
             var model = _mapper.Map<List<Category>, List<CategoryVM>>(data);
 
             return PartialView("_LoadCategories", model);
+        }
+        catch (Exception)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+    }
+
+    public async Task<IActionResult> LoadBrands()
+    {
+        try
+        {
+            var data = await _brandRepo.GetBrandsImages();
+            var model = _mapper.Map<List<Brand>, List<BrandVM>>(data);
+
+            return PartialView("_LoadBrands", model);
         }
         catch (Exception)
         {

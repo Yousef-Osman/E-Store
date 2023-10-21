@@ -17,40 +17,51 @@
     }
 </style>
 
-<div class="head-section text-light">
-    <div class="container-fluid col-12 col-lg-11">
-        <div class="d-flex justify-content-between align-items-center py-5">
-            <div class="col-8">
-                <h1 class="display-6 fw-bold">Welcome to E-Store</h1>
-                <p class="fs-4">This Is an E-Commerce App, that was built using ASP.NET Core MVC.</p>
-                <button class="btn btn-light" type="button">Start Shopping</button>
-            </div>
-            <div class="col-4">
-                <img src="~/images/site/homepage.png" class="col-12" />
+<section>
+    <div class="head-section text-light">
+        <div class="container-fluid col-12 col-lg-11">
+            <div class="d-flex justify-content-between align-items-center py-5">
+                <div class="col-8">
+                    <h1 class="display-6 fw-bold">Welcome to E-Store</h1>
+                    <p class="fs-4">This Is an E-Commerce App, that was built using ASP.NET Core MVC.</p>
+                    <button class="btn btn-light" type="button">Start Shopping</button>
+                </div>
+                <div class="col-4">
+                    <img src="~/images/site/homepage.png" class="col-12" />
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-
-<div class="container-fluid col-12 col-lg-11 my-5">
-    <h2 class="text-center fw-bold mb-5">Shop By Category</h2>
-    <div class="mb-5" id="categories-container"></div>
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3" id="data-container">
+    <div class="container-fluid col-12 col-lg-11 py-5">
+        <h2 class="text-center fw-bold mb-5">Shop By Category</h2>
+        <div id="categories-container"></div>
     </div>
-</div>
+    <div class="py-5 bg-light">
+        <h2 class="text-center fw-bold mb-5">Shop By Brand</h2>
+        <div class="container-fluid col-12 col-lg-11" id="brands-container"></div>
+    </div>
+    <div class="container-fluid col-12 col-lg-11 py-5">
+        <h2 class="text-center fw-bold mb-5">New Cummers</h2>
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3" id="products-container"></div>
+    </div>
+    <div class="mb-5">
+    </div>
+</section>
+
+
 
 @section scripts {
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
             let pageNumber = 1;
 
-            loadCategories();
-            loadData();
-            addMoreBtn.onclick = function () { loadData() };
+            loadData('/Home/LoadCategories', 'categories-container');
+            loadData('/Home/LoadBrands', 'brands-container');
+            loadData('/Home/LoadProducts', 'products-container');
 
-            function loadData() {
-                fetch(`/Home/LoadProducts?pageNumber=${pageNumber}`, {
+            function loadData(url, parentDiv) {
+                fetch(url, {
                     headers: { 'Content-Type': 'application/json' },
                     method: 'Get',
                 }).then(response => {
@@ -60,28 +71,7 @@
 
                     return response.text();
                 }).then(data => {
-                    if (data !== null) {
-                        document.getElementById('data-container').innerHTML += data;
-                    }
-                }).catch(error => {
-                    alert(error);
-                });
-            };
-
-            function loadCategories() {
-                fetch(`/Home/LoadCategories`, {
-                    headers: { 'Content-Type': 'application/json' },
-                    method: 'Get',
-                }).then(response => {
-                    if (!response.ok) {
-                        throw new Error(response.status);
-                    }
-
-                    return response.text();
-                }).then(data => {
-                    if (data !== null) {
-                        document.getElementById('categories-container').innerHTML += data;
-                    }
+                    document.getElementById(parentDiv).innerHTML += data;
                 }).catch(error => {
                     alert(error);
                 });

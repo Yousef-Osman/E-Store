@@ -61,13 +61,18 @@ public static class DatabaseSeeder
         if (!context.Brands.Any())
         {
             var brands = new List<Brand> {
-                new Brand { Name = "Dell", Description = "Dell" },
-                new Brand { Name = "HP", Description = "HP" },
-                new Brand { Name = "Lenovo", Description = "Lenovo" },
-                new Brand { Name = "Toshiba", Description = "Toshiba" },
-                new Brand { Name = "Asus", Description = "Asus" },
-                new Brand { Name = "Apple", Description = "Apple" },
-                new Brand { Name = "Samsung", Description = "Samsung" },
+                new Brand { Name = "Lenovo", Description = "Lenovo", ImageUrl = "images/site/brands/lenovo.png" },
+                new Brand { Name = "Dell", Description = "Dell", ImageUrl = "images/site/brands/dell.png" },
+                new Brand { Name = "HP", Description = "HP", ImageUrl = "images/site/brands/hp.png" },
+                new Brand { Name = "Toshiba", Description = "Toshiba", ImageUrl = "images/site/brands/toshiba.png" },
+                new Brand { Name = "Asus", Description = "Asus", ImageUrl = "images/site/brands/asus.png" },
+                new Brand { Name = "Apple", Description = "Apple", ImageUrl = "images/site/brands/apple.png" },
+                new Brand { Name = "Fujitsu", Description = "Fujitsu", ImageUrl = "images/site/brands/fujitsu.png" },
+                new Brand { Name = "Samsung", Description = "Samsung", ImageUrl = "images/site/brands/samsung.png" },
+                new Brand { Name = "Acer", Description = "Acer", ImageUrl = "images/site/brands/acer.png" },
+                new Brand { Name = "Canon", Description = "Canon", ImageUrl = "images/site/brands/canon.png" },
+                new Brand { Name = "Sony", Description = "Sony", ImageUrl = "images/site/brands/sony.png" },
+                new Brand { Name = "Xiaomi", Description = "Xiaomi", ImageUrl = "images/site/brands/xiaomi.png" },
             };
 
             context.Brands.AddRange(brands);
@@ -76,16 +81,16 @@ public static class DatabaseSeeder
         if (!context.Categories.Any())
         {
             var categories = new List<Category> {
-                new Category { Name = "PC", Description = "PC", ImageUrl = "/site/categories/pc.png" },
-                new Category { Name = "Laptop", Description = "Laptop", ImageUrl = "/site/categories/laptop.png"  },
-                new Category { Name = "Televisions", Description = "Televisions", ImageUrl = "/site/categories/tv.png"  },
-                new Category { Name = "Cell Phones", Description = "Cell Phones", ImageUrl = "/site/categories/phone.png"  },
-                new Category { Name = "Digital Cameras", Description = "Digital Cameras", ImageUrl = "/site/categories/camera.png"  },
-                new Category { Name = "Tablets", Description = "Tablets", ImageUrl = "/site/categories/tablet.png"  },
-                new Category { Name = "Headphones", Description = "Headphones", ImageUrl = "/site/categories/headphone.png"  },
-                new Category { Name = "Playstration", Description = "Playstration", ImageUrl = "/site/categories/playstration.png"  },
-                new Category { Name = "Smart Watches", Description = "Smart Watches", ImageUrl = "/site/categories/watch.png"  },
-                new Category { Name = "Accessories", Description = "Accessories", ImageUrl = "/site/categories/Accessories.png"  },
+                new Category { Name = "PC", Description = "PC", ImageUrl = "images/site/categories/pc.png" },
+                new Category { Name = "Laptop", Description = "Laptop", ImageUrl = "images/site/categories/laptop.png"  },
+                new Category { Name = "Televisions", Description = "Televisions", ImageUrl = "images/site/categories/tv.png"  },
+                new Category { Name = "Cell Phones", Description = "Cell Phones", ImageUrl = "images/site/categories/phone.png"  },
+                new Category { Name = "Digital Cameras", Description = "Digital Cameras", ImageUrl = "images/site/categories/camera.png"  },
+                new Category { Name = "Tablets", Description = "Tablets", ImageUrl = "images/site/categories/tablet.png"  },
+                new Category { Name = "Headphones", Description = "Headphones", ImageUrl = "images/site/categories/headphone.png"  },
+                new Category { Name = "Playstration", Description = "Playstration", ImageUrl = "images/site/categories/playstration.png"  },
+                new Category { Name = "Smart Watches", Description = "Smart Watches", ImageUrl = "images/site/categories/watch.png"  },
+                new Category { Name = "Accessories", Description = "Accessories", ImageUrl = "images/site/categories/Accessories.png"  },
             };
 
             context.Categories.AddRange(categories);
