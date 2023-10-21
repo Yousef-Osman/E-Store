@@ -19,5 +19,7 @@ public class MappingProfiles: Profile
                         src.Categories.Select(a => a.CategoryId)))
             .ForMember(des => des.Categories, options => options.Ignore())
             .ForMember(des => des.Brands, options => options.Ignore());
+
+        CreateMap<Category, CategoryVM>();
     }
 }

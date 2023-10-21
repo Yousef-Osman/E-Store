@@ -76,10 +76,16 @@ public static class DatabaseSeeder
         if (!context.Categories.Any())
         {
             var categories = new List<Category> {
-                new Category { Name = "PC", Description = "PC" },
-                new Category { Name = "Laptop", Description = "Laptop" },
-                new Category { Name = "Accessories", Description = "Accessories" },
-                new Category { Name = "Electronics", Description = "Electronics" },
+                new Category { Name = "PC", Description = "PC", ImageUrl = "/site/categories/pc.png" },
+                new Category { Name = "Laptop", Description = "Laptop", ImageUrl = "/site/categories/laptop.png"  },
+                new Category { Name = "Televisions", Description = "Televisions", ImageUrl = "/site/categories/tv.png"  },
+                new Category { Name = "Cell Phones", Description = "Cell Phones", ImageUrl = "/site/categories/phone.png"  },
+                new Category { Name = "Digital Cameras", Description = "Digital Cameras", ImageUrl = "/site/categories/camera.png"  },
+                new Category { Name = "Tablets", Description = "Tablets", ImageUrl = "/site/categories/tablet.png"  },
+                new Category { Name = "Headphones", Description = "Headphones", ImageUrl = "/site/categories/headphone.png"  },
+                new Category { Name = "Playstration", Description = "Playstration", ImageUrl = "/site/categories/playstration.png"  },
+                new Category { Name = "Smart Watches", Description = "Smart Watches", ImageUrl = "/site/categories/watch.png"  },
+                new Category { Name = "Accessories", Description = "Accessories", ImageUrl = "/site/categories/Accessories.png"  },
             };
 
             context.Categories.AddRange(categories);

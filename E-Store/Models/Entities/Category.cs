@@ -11,4 +11,7 @@ public class Category: BaseEntity
 
     [StringLength(400)]
     public string Description { get; set; }
+
+    [StringLength(1000)]
+    public string ImageUrl { get; set; }
 }
