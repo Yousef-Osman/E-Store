@@ -24,7 +24,7 @@
                 <div class="col-8">
                     <h1 class="display-6 fw-bold">Welcome to E-Store</h1>
                     <p class="fs-4">This Is an E-Commerce App, that was built using ASP.NET Core MVC.</p>
-                    <button class="btn btn-light" type="button">Start Shopping</button>
+                    <a asp-controller="Home" asp-action="Shop" class="btn btn-outline-light btn-lg px-4" type="button">Start Shopping</a>
                 </div>
                 <div class="col-4">
                     <img src="~/images/site/homepage.png" class="col-12" />
@@ -42,10 +42,8 @@
         <div class="container-fluid col-12 col-lg-11" id="brands-container"></div>
     </div>
     <div class="container-fluid col-12 col-lg-11 py-5">
-        <h2 class="text-center fw-bold mb-5">New Cummers</h2>
+        <h2 class="text-center fw-bold mb-5">Best Sellers</h2>
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3" id="products-container"></div>
-    </div>
-    <div class="mb-5">
     </div>
 </section>
 

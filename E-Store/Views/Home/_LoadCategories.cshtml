@@ -3,11 +3,13 @@
 <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-2">
     @foreach (var category in Model)
     {
+        <a asp-controller="Home" asp-action="Shop" class="text-reset text-decoration-none">
         <div class="col">
             <div class="text-center">
                 <img src="~/@category.ImageUrl" height="100" class="p-3" />
                 <h5 class="card-title">@category.Name</h5>
             </div>
         </div>
+        </a>
     }
 </div>

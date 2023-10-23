@@ -43,11 +43,57 @@
         </main>
     </div>
 
-    <footer class="bg-dark footer text-light">
-        <div class="container-fluid col-12 col-lg-11 px-0 py-3 text-center">
-            &copy; 2023 - <strong>E-Store</strong> - <a class="text-decoration-none text-light" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="text-center text-lg-start text-white footer" style="background-color: #1c2331">
+        <section style="background-color: #6351ce">
+            <div class="container-fluid col-12 col-lg-11 px-0 d-flex justify-content-between py-3">
+                <span>Get connected with us on social networks:</span>
+                <a href="https://github.com/Yousef-Osman" class="text-white me-4">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </section>
+        <section class="container-fluid col-12 col-lg-11 px-0">
+            <div class="text-center text-md-start mt-5">
+                <div class="row justify-content-between mt-3">
+                    <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">E-Store</h6>
+                        <p>
+                            This Is an E-Commerce App, that was built
+                            using ASP.NET Core MVC.
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xl-2 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+                        <p>
+                            <a asp-controller="Home" asp-action="Shop" class="text-decoration-none text-white">Shop</a>
+                        </p>
+                        <p>
+                            <a asp-controller="ShoppingCart" asp-action="Index" class="text-decoration-none text-white">Shopping Cart</a>
+                        </p>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+                        <p>
+                            <a href="https://getbootstrap.com/" class="text-decoration-none text-white">Bootstrap</a>
+                        </p>
+                        <p>
+                            <a href="https://fontawesome.com/icons" class="text-decoration-none text-white">Font Awsome</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Contacts</h6>
+                        <p><i class="fas fa-envelope mr-3"></i> youssef.othman.m@outlook.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> +20 1229778668</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2023 - E-Store
         </div>
     </footer>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

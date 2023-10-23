@@ -4,10 +4,12 @@
     @foreach (var category in Model)
     {
         <div class="col">
-            <div class="text-center">
-                <img src="~/@category.ImageUrl" height="70" class="p-3" />
-                <h5 class="card-title">@category.Name</h5>
-            </div>
+            <a asp-controller="Home" asp-action="Shop" class="text-reset text-decoration-none">
+                <div class="text-center">
+                    <img src="~/@category.ImageUrl" height="70" class="p-3" />
+                    <h5 class="card-title">@category.Name</h5>
+                </div>
+            </a>
         </div>
     }
 </div>
